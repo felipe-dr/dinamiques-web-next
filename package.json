@@ -27,6 +27,7 @@
     "prettier:format": "npm run prettier -- --write",
     "prettier:format:staged": "prettier --write",
     "test": "jest",
+    "test:staged": "npm test -- --findRelatedTests",
     "test:coverage": "npm test -- --coverage"
   },
   "dependencies": {
