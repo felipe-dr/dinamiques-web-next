@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { FooterComponent, HeaderComponent } from '@/components';
+
 import './styles/global.css';
 
 const inter = Inter({
@@ -18,11 +20,15 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): JSX.Element {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} text-lg text-base-5 antialiased`}>
+      <body
+        className={`${inter.className} bg-base-16 text-lg text-base-5 antialiased`}
+      >
+        <HeaderComponent />
         {children}
+        <FooterComponent />
       </body>
     </html>
   );
