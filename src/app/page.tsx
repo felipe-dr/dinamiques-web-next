@@ -1,3 +1,5 @@
-export default function Home() {
-  return <h1>Dinamiques</h1>;
+import { redirect } from 'next/navigation';
+
+export default function HomePage(): JSX.Element {
+  redirect('/blog');
 }
