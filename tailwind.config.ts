@@ -37,6 +37,7 @@ const config: Config = {
         5: 'rgba(var(--primary-5), <alpha-value>)',
         6: 'rgba(var(--primary-6), <alpha-value>)',
         7: 'rgba(var(--primary-7), <alpha-value>)',
+        8: 'rgba(var(--primary-8), <alpha-value>)',
       },
       success: {
         1: 'rgba(var(--success-1), <alpha-value>)',
@@ -186,8 +187,14 @@ const config: Config = {
       lg: 'var(--border-radius-lg) /* 10px */',
       full: 'var(--border-radius-full) /* 100% */',
     },
-    extend: {},
+    extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: 'var(--spacing-5)',
+        },
+      },
+    },
   },
-  plugins: [],
 };
 export default config;
