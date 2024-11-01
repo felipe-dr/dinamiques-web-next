@@ -38,6 +38,9 @@
         "groups": [
           "module",
           "/@/styles/",
+          "/@/contexts/",
+          "/@/libs/",
+          "/@/models/",
           "/@/components/",
           ["parent", "sibling", "index"]
         ],
