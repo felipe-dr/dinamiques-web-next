@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ComponentProps, JSX } from 'react';
 
-import { cn } from '@/libs/utils';
+import { cn } from '@/libs/tailwind/tailwind.lib';
 
 import { SectionDecoratorComponent } from '../section-decorator/section-decorator.component';
 
@@ -39,9 +39,9 @@ export function HeroComponent({
           priority={backgroundImage.isPriority}
         />
       )}
-      <div className="container relative z-[2] flex max-w-screen-xl items-center justify-between">
+      <header className="container relative z-[2] flex max-w-screen-xl items-center justify-between">
         {children}
-      </div>
+      </header>
       <SectionDecoratorComponent className="absolute bottom-0 z-[2] fill-base-16" />
     </section>
   );
