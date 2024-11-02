@@ -22,7 +22,7 @@ export function CategoryMenuComponent(): JSX.Element {
 
   return (
     <TabsComponent
-      className="mx-auto overflow-x-auto bg-base-15"
+      className="mx-auto w-full overflow-x-auto rounded-lg border border-base-14 bg-base-15 text-center"
       defaultValue={allCategories.name}
     >
       <TabsListComponent>
