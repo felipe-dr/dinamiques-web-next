@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 import { ComponentProps, ElementType, JSX } from 'react';
 
-import { cn } from '@/libs/utils';
+import { cn } from '@/libs/tailwind/tailwind.lib';
 
 const titleVariant = cva('w-full break-words font-semibold uppercase', {
   variants: {

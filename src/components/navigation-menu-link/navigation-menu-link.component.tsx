@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import { cn } from '@/libs/utils';
+import { cn } from '@/libs/tailwind/tailwind.lib';
 
 import { buttonVariants } from '../ui/button';
 

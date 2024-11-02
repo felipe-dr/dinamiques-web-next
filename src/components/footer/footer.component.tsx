@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { cn } from '@/libs/utils';
+import { cn } from '@/libs/tailwind/tailwind.lib';
 
 import { buttonVariants } from '../ui/button';
 
