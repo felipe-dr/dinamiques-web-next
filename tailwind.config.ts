@@ -194,6 +194,9 @@ const config: Config = {
           DEFAULT: 'var(--spacing-5)',
         },
       },
+      gridTemplateColumns: {
+        'articles-section': 'repeat(auto-fit, minmax(23.75rem, 1fr))',
+      },
     },
   },
 };
