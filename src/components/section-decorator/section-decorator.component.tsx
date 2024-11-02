@@ -1,6 +1,6 @@
 import { ComponentProps, JSX } from 'react';
 
-import { cn } from '@/libs/utils';
+import { cn } from '@/libs/tailwind/tailwind.lib';
 
 export function SectionDecoratorComponent({
   ...props
@@ -9,7 +9,7 @@ export function SectionDecoratorComponent({
     <svg
       {...props}
       className={cn(
-        'absolute inset-x-0 bottom-0 z-[2] max-h-[148px] w-full',
+        'absolute inset-x-0 bottom-0 z-[2] max-h-[9.25rem] w-full',
         props.className,
       )}
       width={1600}
