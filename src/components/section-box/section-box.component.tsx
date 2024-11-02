@@ -1,6 +1,6 @@
 import { ComponentProps, ElementType, JSX } from 'react';
 
-import { cn } from '@/libs/utils';
+import { cn } from '@/libs/tailwind/tailwind.lib';
 
 interface SectionBoxComponentProps extends ComponentProps<'section'> {
   tag: 'section' | 'article' | 'aside' | 'div';
@@ -18,7 +18,7 @@ export function SectionBoxComponent({
     <Element
       {...props}
       className={cn(
-        'py-13 lg:py-14 container flex max-w-screen-xl items-center',
+        'py-13 lg:py-14 container flex flex-col max-w-screen-xl items-center',
         props.className,
       )}
     >
