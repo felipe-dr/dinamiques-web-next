@@ -29,7 +29,7 @@ const CategoryContext = createContext<CategoryContextData>(
 const allCategories = {
   id: '1',
   name: 'todos',
-  color: '#fff',
+  color: '#404040',
 };
 
 export default function CategoryProvider({
