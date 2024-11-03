@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { MobileMenuButtonComponent } from '../mobile-menu-button/mobile-menu-button.component';
 import { NavigationMenuLinkComponent } from '../navigation-menu-link/navigation-menu-link.component';
-import { Button as ButtonComponent } from '../ui/button';
+import { ButtonComponent } from '../ui/button';
 
 const NAVIGATION_MENU_ITEMS = [
   {
@@ -34,7 +34,7 @@ export function NavigationMenuComponent(): JSX.Element {
     <>
       <MobileMenuButtonComponent navigationMenuState={navigationMenuState} />
       <nav
-        className={`${showNavigationMenu ? 'block' : 'hidden'} absolute left-0 top-[5.188rem] size-full bg-base-15 py-5 md:hidden`}
+        className={`${showNavigationMenu ? 'block' : 'hidden'} absolute left-0 top-[5.188rem] z-50 size-full bg-base-15 py-5 md:hidden`}
       >
         <ul>
           {NAVIGATION_MENU_ITEMS.map((menuItem) => (
