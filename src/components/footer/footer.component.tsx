@@ -19,7 +19,7 @@ const FOOTER_RIGHTS = `© ${new Date().getFullYear()} Dinamiques. Alguns direito
 
 export function FooterComponent(): JSX.Element {
   return (
-    <footer className="container flex max-w-screen-xl flex-col gap-y-5 border-t border-t-base-15 py-6 text-center text-sm text-base-9 md:flex-row md:items-center md:justify-between lg:py-9 lg:text-lg">
+    <footer className="container mt-13 flex max-w-screen-xl flex-col gap-y-5 border-t border-t-base-15 py-6 text-center text-sm text-base-9 md:flex-row md:items-center md:justify-between lg:mt-15 lg:py-9 lg:text-lg">
       <ul className="flex justify-center divide-x divide-base-14">
         {FOOTER_LINKS.map((footerLink) => (
           <li className="px-3 text-base-7" key={footerLink.label}>
