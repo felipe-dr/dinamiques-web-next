@@ -4,6 +4,7 @@ import {
   ArticlesSectionComponent,
   CategoryMenuComponent,
   HeroComponent,
+  HeroHeaderComponent,
   SearchInputComponent,
   SectionBoxComponent,
   TitleComponent,
@@ -13,9 +14,11 @@ export default function BlogPage(): JSX.Element {
   return (
     <>
       <HeroComponent>
-        <TitleComponent className="text-base-white md:ms-8 lg:ms-11" tag="h1">
-          Conhecimento ao alcance de todos
-        </TitleComponent>
+        <HeroHeaderComponent>
+          <TitleComponent className="text-base-white md:ms-8 lg:ms-11" tag="h1">
+            Conhecimento ao alcance de todos
+          </TitleComponent>
+        </HeroHeaderComponent>
       </HeroComponent>
       <main>
         <CategoryProvider>
