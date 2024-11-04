@@ -32,7 +32,7 @@ export function ArticleCardComponent({
   return (
     <Link
       className={cn('grid max-w-[27.5rem] w-full group', props.className)}
-      href={`/#`}
+      href={`/blog/${article.slug}`}
     >
       <CardComponent
         className="grid overflow-hidden duration-500 ease-in-out group-hover:border-base-11"
@@ -62,7 +62,8 @@ export function ArticleCardComponent({
           <TitleComponent
             className="font-normal text-primary-3 xs:text-h3-md md:text-h3-md lg:text-h3-md"
             tag="h1"
-            hasDecorator={false}
+            hasBarDecorator={false}
+            hasDotDecorator={false}
           >
             {article.title}
           </TitleComponent>
