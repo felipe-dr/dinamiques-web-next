@@ -21,23 +21,25 @@ const titleVariant = cva('w-full break-words font-semibold uppercase', {
 
 interface TitleComponentProps extends ComponentProps<'h1'> {
   tag: 'h1' | 'h2' | 'h3';
-  hasDecorator?: boolean;
+  hasBarDecorator?: boolean;
+  hasDotDecorator?: boolean;
   children: React.ReactNode;
 }
 
 export function TitleComponent({
   tag,
-  hasDecorator = true,
+  hasBarDecorator = true,
+  hasDotDecorator = true,
   children,
   ...props
 }: TitleComponentProps): JSX.Element {
   const Element = tag as ElementType;
-  const title = titleVariant({ tag, decorator: hasDecorator });
+  const title = titleVariant({ tag, decorator: hasBarDecorator });
 
   return (
     <Element {...props} className={cn(title, props.className)}>
       {children}
-      {hasDecorator && <span className="text-primary-7">.</span>}
+      {hasDotDecorator && <span className="text-primary-7">.</span>}
     </Element>
   );
 }
