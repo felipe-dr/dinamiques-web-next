@@ -1,7 +1,7 @@
 export const articlesMock = [
   {
     id: '1',
-    category: { name: 'biologia', color: '#FFC300' },
+    category: { name: 'biologia', color: '#5E1B99' },
     teacher: {
       name: 'Ana Lima',
       avatarImageUrl: 'https://picsum.photos/seed/pessoa/42/42',
@@ -23,7 +23,7 @@ export const articlesMock = [
         <img src="https://picsum.photos/seed/celula/600/480" alt="Estrutura Celular" />
         <p>O núcleo contém o material genético, enquanto as mitocôndrias são responsáveis pela produção de energia.</p>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
+      highlighImageUrl: 'https://picsum.photos/seed/biologia/1600/640',
       publishedLastDate: new Date('2023-10-30T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-30T14:30:00Z'),
@@ -34,7 +34,7 @@ export const articlesMock = [
   },
   {
     id: 2,
-    category: { name: 'português', color: '#FF5733' },
+    category: { name: 'português', color: '#991B1E' },
     teacher: { name: 'Mariana Costa' },
     article: {
       title: 'Concordância Verbal',
@@ -51,7 +51,7 @@ export const articlesMock = [
           <li>Os alunos estudam. (plural)</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
+      highlighImageUrl: '',
       publishedLastDate: new Date('2024-02-13T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
@@ -90,7 +90,7 @@ export const articlesMock = [
   },
   {
     id: 4,
-    category: { name: 'história', color: '#C70039' },
+    category: { name: 'história', color: '#99561B' },
     teacher: { name: 'Carlos Mendes' },
     article: {
       title: 'A Independência do Brasil',
@@ -119,7 +119,7 @@ export const articlesMock = [
   },
   {
     id: 5,
-    category: { name: 'biologia', color: '#FFC300' },
+    category: { name: 'biologia', color: '#5E1B99' },
     teacher: { name: 'Ana Lima' },
     article: {
       title: 'Fotossíntese',
@@ -148,7 +148,7 @@ export const articlesMock = [
   },
   {
     id: 6,
-    category: { name: 'biologia', color: '#FFC300' },
+    category: { name: 'biologia', color: '#5E1B99' },
     teacher: { name: 'Roberta Santos' },
     article: {
       title: 'Evolução das Espécies',
@@ -177,7 +177,7 @@ export const articlesMock = [
   },
   {
     id: 7,
-    category: { name: 'português', color: '#FF5733' },
+    category: { name: 'português', color: '#991B1E' },
     teacher: { name: 'Mariana Costa' },
     article: {
       title: 'Figuras de Linguagem',
@@ -235,7 +235,7 @@ export const articlesMock = [
   },
   {
     id: 9,
-    category: { name: 'história', color: '#C70039' },
+    category: { name: 'história', color: '#99561B' },
     teacher: { name: 'Carlos Mendes' },
     article: {
       title: 'As Guerras Mundiais',
@@ -263,7 +263,7 @@ export const articlesMock = [
   },
   {
     id: 10,
-    category: { name: 'biologia', color: '#FFC300' },
+    category: { name: 'biologia', color: '#5E1B99' },
     teacher: { name: 'Roberta Santos' },
     article: {
       title: 'Biodiversidade e Ecossistemas',
@@ -292,7 +292,7 @@ export const articlesMock = [
   },
   {
     id: 11,
-    category: { name: 'biologia', color: '#FFC300' },
+    category: { name: 'biologia', color: '#5E1B99' },
     teacher: { name: 'Roberta Santos' },
     article: {
       title: 'Cadeias Alimentares',
@@ -322,7 +322,7 @@ export const articlesMock = [
   },
   {
     id: 12,
-    category: { name: 'português', color: '#FF5733' },
+    category: { name: 'português', color: '#991B1E' },
     teacher: { name: 'Mariana Costa' },
     article: {
       title: 'Crase: Uso e Dicas',
@@ -378,7 +378,7 @@ export const articlesMock = [
   },
   {
     id: 14,
-    category: { name: 'história', color: '#C70039' },
+    category: { name: 'história', color: '#99561B' },
     teacher: { name: 'Carlos Mendes' },
     article: {
       title: 'A Revolução Francesa',
@@ -406,7 +406,7 @@ export const articlesMock = [
   },
   {
     id: 15,
-    category: { name: 'biologia', color: '#FFC300' },
+    category: { name: 'biologia', color: '#5E1B99' },
     teacher: { name: 'Roberta Santos' },
     article: {
       title: 'Ciclo da Água',
@@ -435,7 +435,7 @@ export const articlesMock = [
   },
   {
     id: 16,
-    category: { name: 'português', color: '#FF5733' },
+    category: { name: 'português', color: '#991B1E' },
     teacher: { name: 'Mariana Costa' },
     article: {
       title: 'Gêneros Textuais',
