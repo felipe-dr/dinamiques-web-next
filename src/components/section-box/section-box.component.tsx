@@ -4,11 +4,13 @@ import { cn } from '@/libs/tailwind/tailwind.lib';
 
 interface SectionBoxComponentProps extends ComponentProps<'section'> {
   tag: 'section' | 'article' | 'aside' | 'div';
+  hasContainer?: boolean;
   children: React.ReactNode;
 }
 
 export function SectionBoxComponent({
   tag,
+  hasContainer = true,
   children,
   ...props
 }: SectionBoxComponentProps): JSX.Element {
@@ -18,7 +20,7 @@ export function SectionBoxComponent({
     <Element
       {...props}
       className={cn(
-        'py-13 lg:py-14 container flex flex-col max-w-screen-xl items-center',
+        `py-13 lg:py-14 ${hasContainer && 'container flex flex-col max-w-screen-xl items-center'}`,
         props.className,
       )}
     >
