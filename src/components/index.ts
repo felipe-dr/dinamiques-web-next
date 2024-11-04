@@ -1,4 +1,6 @@
+export * from './article-author-name/article-author-name.component';
 export * from './article-card/article-card.component';
+export * from './article-published-last-date/article-published-last-date.component';
 export * from './article-reading-time/article-reading-time.component';
 export * from './articles-section/articles-section.component';
 export * from './category-menu/category-menu.component';
@@ -17,4 +19,5 @@ export * from './ui/avatar';
 export * from './ui/button';
 export * from './ui/card';
 export * from './ui/input';
+export * from './ui/pagination';
 export * from './ui/tabs';
