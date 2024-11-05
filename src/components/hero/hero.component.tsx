@@ -25,13 +25,13 @@ export function HeroComponent({
     <section
       {...props}
       className={cn(
-        'relative bg-base-15 py-15 lg:py-[13.75rem]',
+        `overflow-hidden relative bg-base-15 py-15 lg:py-[13.75rem] ${backgroundImage?.path && 'before:absolute before:left-0 before:w-full before:h-full before:bg-base-16 before:top-0 before:bottom-0 before:z-[1] before:opacity-85'}`,
         props.className,
       )}
     >
-      {backgroundImage && (
+      {backgroundImage?.path && (
         <Image
-          className="absolute top-0 -z-0 size-full object-cover"
+          className="absolute top-0 -z-0 size-full object-cover blur-[0.125rem]"
           src={backgroundImage.path}
           alt={backgroundImage.alt}
           width={backgroundImage.width}
