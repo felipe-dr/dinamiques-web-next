@@ -4,6 +4,7 @@ export * from './article-published-last-date/article-published-last-date.compone
 export * from './article-reading-time/article-reading-time.component';
 export * from './articles-section/articles-section.component';
 export * from './category-menu/category-menu.component';
+export * from './content-renderer/content-renderer.component';
 export * from './footer/footer.component';
 export * from './header/header.component';
 export * from './hero/hero.component';
