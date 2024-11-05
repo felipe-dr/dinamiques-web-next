@@ -19,6 +19,29 @@ import {
   TitleComponent,
 } from '@/components';
 
+// TODO: migrate to context
+function filterArticlesByCategoryAndId(
+  articles: ArticleModel[],
+  categoryName: string,
+  excludeId: string,
+) {
+  return articles.filter(
+    (article: ArticleModel) =>
+      article.category.name === categoryName && article.id !== excludeId,
+  );
+}
+
+function randomArticles(articles: ArticleModel[]) {
+  return articles.sort(() => Math.random() - 0.5);
+}
+
+function sortArticlesByDate(articles: ArticleModel[]) {
+  return articles.sort(
+    (a, b) =>
+      Number(b.article.publishedLastDate) - Number(a.article.publishedLastDate),
+  );
+}
+
 async function getArticle(slug: string) {
   const article = articlesMock.find(
     (articleMock) => articleMock.article.slug === slug,
@@ -34,14 +57,24 @@ interface ArticlePageProps {
 export default async function ArticlePage({
   params: { slug },
 }: ArticlePageProps): Promise<JSX.Element> {
-  const { category, teacher, article } = (await getArticle(
+  const { id, category, teacher, article } = (await getArticle(
     slug,
   )) as ArticleModel;
 
-  // TODO: filter last published article, current article category, only 3 and removes mock
-  const filteredArticles = articlesMock.filter(
-    (articleMock) => articleMock.category.name === category.name,
+  // TODO: removes mock
+  const filteredArticlesByCategoryAndId = filterArticlesByCategoryAndId(
+    articlesMock as ArticleModel[],
+    category.name,
+    id,
   );
+  const randomArticlesByCategory = randomArticles(
+    filteredArticlesByCategoryAndId,
+  );
+  const randomSomeArticlesByCategory = randomArticlesByCategory.slice(0, 3);
+  const randomSomeArticlesByCategoryAndSortByDate = sortArticlesByDate(
+    randomSomeArticlesByCategory,
+  );
+
   const backgroundImage = {
     path: article.highlighImageUrl,
     alt: article.title,
@@ -97,7 +130,7 @@ export default async function ArticlePage({
         >
           <ContentRendererComponent content={article.content} />
         </SectionBoxComponent>
-        {filteredArticles.length > 0 && (
+        {randomSomeArticlesByCategoryAndSortByDate.length > 0 && (
           <SectionBoxComponent
             className="border-y border-base-14 bg-base-16"
             tag="section"
@@ -112,13 +145,15 @@ export default async function ArticlePage({
                 Recomendados
               </TitleComponent>
               <div className="grid items-stretch justify-items-center gap-9 sm:grid-cols-articles-section">
-                {filteredArticles.map((filteredArticle, index) => (
-                  <ArticleCardComponent
-                    className={`${index % 2 === 0 && filteredArticles.length !== 1 ? 'md:justify-self-end' : 'md:justify-self-start'}`}
-                    key={filteredArticle.id}
-                    article={filteredArticle}
-                  />
-                ))}
+                {randomSomeArticlesByCategoryAndSortByDate.map(
+                  (randomArticle, index) => (
+                    <ArticleCardComponent
+                      className={`${index % 2 === 0 && randomSomeArticlesByCategoryAndSortByDate.length !== 1 ? 'md:justify-self-end' : 'md:justify-self-start'}`}
+                      key={randomArticle.id}
+                      article={randomArticle}
+                    />
+                  ),
+                )}
               </div>
             </div>
           </SectionBoxComponent>
