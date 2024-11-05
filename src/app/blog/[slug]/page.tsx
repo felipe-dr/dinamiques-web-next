@@ -62,14 +62,12 @@ export default async function ArticlePage({
   )) as ArticleModel;
 
   // TODO: removes mock
-  const filteredArticlesByCategoryAndId = filterArticlesByCategoryAndId(
+  const articlesByCategoryAndId = filterArticlesByCategoryAndId(
     articlesMock as ArticleModel[],
     category.name,
     id,
   );
-  const randomArticlesByCategory = randomArticles(
-    filteredArticlesByCategoryAndId,
-  );
+  const randomArticlesByCategory = randomArticles(articlesByCategoryAndId);
   const randomSomeArticlesByCategory = randomArticlesByCategory.slice(0, 3);
   const randomSomeArticlesByCategoryAndSortByDate = sortArticlesByDate(
     randomSomeArticlesByCategory,
