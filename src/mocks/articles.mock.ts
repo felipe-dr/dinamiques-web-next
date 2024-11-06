@@ -42,14 +42,46 @@ export const articlesMock = [
       summary: 'Entenda as regras da concordância verbal na língua portuguesa.',
       readingTime: 12,
       content: `
-        <h2>Regras Básicas</h2>
-        <p>A concordância verbal é a harmonia entre o sujeito e o verbo em número e pessoa.</p>
-        <img src="https://picsum.photos/seed/portugues/600/480" alt="Concordância Verbal" />
-        <p>Exemplos:</p>
-        <ul>
-          <li>O aluno estuda. (singular)</li>
-          <li>Os alunos estudam. (plural)</li>
-        </ul>
+## Regras Básicas
+
+A concordância verbal é a harmonia entre o sujeito e o verbo em número e pessoa. Isso é essencial para garantir a fluidez e a correção da linguagem.
+![Concordância Verbal](https://picsum.photos/seed/portugues/600/480)
+
+[teste link](www.google.com.br)
+
+> Citação de exemplo
+
+*teste italico*
+
+\`<p class="test">Teste</p>\`
+
+\`<pre>Teste pre<pre>\`
+
+
+### Exemplo 1: Concordância com Sujeito no Singular
+
+Quando o sujeito está no **singular**, o verbo também deve estar no **singular**.
+
+- **O aluno** estuda. (singular)
+- **A criança** brinca no parque. (singular)
+
+### Exemplo 2: Concordância com Sujeito no Plural
+
+Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
+
+- **Os alunos** estudam. (plural)
+- **As crianças** brincam no parque. (plural)
+
+> **Dica:** Para identificar se o sujeito está no singular ou plural, observe o número do sujeito (se é um ou mais) e faça a concordância com o verbo de acordo.
+
+### Regras Importantes
+
+1. Quando o sujeito é composto, o verbo deve concordar com o **núcleo** do sujeito.
+
+   - **O aluno e a professora** explicam a lição. (plural)
+   - **A professora e o aluno** explicam a lição. (plural)
+
+2. Em alguns casos, o verbo concorda com o sujeito mais próximo, especialmente quando o sujeito é composto por substantivos de gêneros diferentes.
       `,
       highlighImageUrl: '',
       publishedLastDate: new Date('2024-02-13T14:30:00Z'),
@@ -339,7 +371,7 @@ export const articlesMock = [
         </ul>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
-      publishedLastDate: new Date('2023-10-29T14:30:00Z'),
+      publishedLastDate: new Date('2020-09-20T11:35:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
       updatedAt: new Date('2023-10-29T14:30:00Z'),
@@ -454,7 +486,7 @@ export const articlesMock = [
         </ul>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
-      publishedLastDate: new Date('2023-10-29T14:30:00Z'),
+      publishedLastDate: new Date('2020-12-24T15:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
       updatedAt: new Date('2023-10-29T14:30:00Z'),
