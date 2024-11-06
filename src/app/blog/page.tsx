@@ -1,4 +1,4 @@
-import CategoryProvider from '@/contexts/category/category.context';
+import { ArticleProvider, CategoryProvider } from '@/contexts/';
 
 import {
   ArticlesSectionComponent,
@@ -22,13 +22,15 @@ export default function BlogPage(): JSX.Element {
       </HeroComponent>
       <main>
         <CategoryProvider>
-          <SectionBoxComponent className="pb-0 lg:pb-0" tag="section">
-            <CategoryMenuComponent />
-            <form className="relative mt-10 w-full max-w-[27.5rem] md:self-start lg:mt-11">
-              <SearchInputComponent />
-            </form>
-          </SectionBoxComponent>
-          <ArticlesSectionComponent />
+          <ArticleProvider>
+            <SectionBoxComponent className="pb-0 lg:pb-0" tag="section">
+              <CategoryMenuComponent />
+              <form className="relative mt-10 w-full max-w-[27.5rem] md:self-start lg:mt-11">
+                <SearchInputComponent />
+              </form>
+            </SectionBoxComponent>
+            <ArticlesSectionComponent />
+          </ArticleProvider>
         </CategoryProvider>
       </main>
     </>
