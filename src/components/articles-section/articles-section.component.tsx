@@ -1,29 +1,21 @@
 'use client';
 
-import { articlesMock } from '@/mocks';
+import { useArticleContext } from '@/contexts';
 
-import { useCategoryContext } from '@/contexts';
-
-import { ArticleCardComponent } from '../article-card/article-card.component';
-import { SectionBoxComponent } from '../section-box/section-box.component';
 import {
+  ArticleCardComponent,
   PaginationComponent,
   PaginationContentComponent,
   PaginationItemComponent,
   PaginationLinkComponent,
   PaginationNextComponent,
   PaginationPreviousComponent,
-} from '../ui/pagination';
+  SectionBoxComponent,
+} from '@/components';
 
-// TODO: Add dinamic pagination and filter by title or content
+// TODO: Add dinamic pagination
 export function ArticlesSectionComponent(): JSX.Element {
-  const { allCategories, filteredCategory } = useCategoryContext();
-  const filteredArticles =
-    filteredCategory.name === allCategories.name
-      ? articlesMock
-      : articlesMock.filter(
-          (article) => article.category.name === filteredCategory.name,
-        );
+  const { filteredArticles } = useArticleContext();
 
   return (
     <SectionBoxComponent className="grid" tag="section">
