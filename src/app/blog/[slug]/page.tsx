@@ -15,6 +15,7 @@ import {
   HeroContentComponent,
   HeroFooterComponent,
   HeroHeaderComponent,
+  NavigationBreadcrumbComponent,
   SectionBoxComponent,
   TitleComponent,
 } from '@/components';
@@ -61,6 +62,17 @@ export default async function ArticlePage({
     slug,
   )) as ArticleModel;
 
+  const breadcrumbItems = [
+    {
+      label: category.name,
+      path: '/blog',
+    },
+    {
+      label: article.title,
+      path: '',
+    },
+  ];
+
   // TODO: removes mock
   const articlesByCategoryAndId = filterArticlesByCategoryAndId(
     articlesMock as ArticleModel[],
@@ -85,6 +97,7 @@ export default async function ArticlePage({
     <>
       <HeroComponent backgroundImage={backgroundImage}>
         <HeroHeaderComponent>
+          <NavigationBreadcrumbComponent breadcrumbItems={breadcrumbItems} />
           <TitleComponent className="text-base-white md:ms-8 lg:ms-11" tag="h1">
             {article.title}
           </TitleComponent>
