@@ -1,6 +1,6 @@
 import { ComponentProps, ElementType, JSX } from 'react';
 
-import { cn } from '@/libs/tailwind/tailwind.lib';
+import { cn } from '@/libs';
 
 interface SectionBoxComponentProps extends ComponentProps<'section'> {
   tag: 'section' | 'article' | 'aside' | 'div';

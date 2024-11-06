@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-import { MobileMenuButtonComponent } from '../mobile-menu-button/mobile-menu-button.component';
-import { NavigationMenuLinkComponent } from '../navigation-menu-link/navigation-menu-link.component';
-import { ButtonComponent } from '../ui/button';
+import {
+  ButtonComponent,
+  MobileMenuButtonComponent,
+  NavigationMenuLinkComponent,
+} from '@/components';
 
 const NAVIGATION_MENU_ITEMS = [
   {

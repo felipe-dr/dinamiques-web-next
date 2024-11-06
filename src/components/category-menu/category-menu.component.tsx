@@ -8,7 +8,7 @@ import {
   TabsComponent,
   TabsListComponent,
   TabsTriggerComponent,
-} from '../ui/tabs';
+} from '@/components';
 
 export function CategoryMenuComponent(): JSX.Element {
   const {

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { cn } from '@/libs/tailwind/tailwind.lib';
+import { cn } from '@/libs';
 
-import { buttonVariants } from '../ui/button';
+import { buttonVariants } from '@/components';
 
 const FOOTER_LINKS = [
   {

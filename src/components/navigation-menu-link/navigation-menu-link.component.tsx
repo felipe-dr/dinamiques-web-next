@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import { cn } from '@/libs/tailwind/tailwind.lib';
+import { cn } from '@/libs';
 
-import { buttonVariants } from '../ui/button';
+import { buttonVariants } from '@/components';
 
 interface NavigationMenuLinkComponentProps {
   menuItem: {

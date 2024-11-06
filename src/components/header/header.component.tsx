@@ -1,5 +1,4 @@
-import { LogoComponent } from '../logo/logo.component';
-import { NavigationMenuComponent } from '../navigation-menu/navigation-menu.component';
+import { LogoComponent, NavigationMenuComponent } from '@/components';
 
 export function HeaderComponent(): JSX.Element {
   return (

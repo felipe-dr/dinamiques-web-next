@@ -1,6 +1,6 @@
 import { ComponentProps, JSX } from 'react';
 
-import { cn } from '@/libs/tailwind/tailwind.lib';
+import { cn } from '@/libs';
 
 export function SectionDecoratorComponent({
   ...props
