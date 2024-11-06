@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import * as React from 'react';
@@ -45,7 +44,7 @@ type PaginationLinkProps = {
 const PaginationLink = ({
   className,
   isActive,
-  size = 'icon',
+  size = 'default', // TODO: change icon
   ...props
 }: PaginationLinkProps) => (
   <Link
