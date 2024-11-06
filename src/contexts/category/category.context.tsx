@@ -26,13 +26,13 @@ const CategoryContext = createContext<CategoryContextData>(
   {} as CategoryContextData,
 );
 
-const allCategories = {
-  id: '1',
+export const allCategories = {
+  id: '0',
   name: 'todos',
   color: '#404040',
 };
 
-export default function CategoryProvider({
+export function CategoryProvider({
   children,
 }: CategoryProviderProps): JSX.Element {
   const [filteredCategory, setFilteredCategory] =
