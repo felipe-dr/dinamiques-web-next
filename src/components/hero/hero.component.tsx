@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { ComponentProps, JSX } from 'react';
 
-import { cn } from '@/libs/tailwind/tailwind.lib';
+import { cn } from '@/libs';
 
-import { SectionDecoratorComponent } from '../section-decorator/section-decorator.component';
+import { SectionDecoratorComponent } from '@/components';
 
 interface HeroComponentProps extends ComponentProps<'section'> {
   backgroundImage?: {
@@ -57,7 +57,7 @@ export function HeroHeaderComponent({
     <header
       {...props}
       className={cn(
-        'container relative z-[1] flex max-w-screen-xl items-center justify-between',
+        'container relative z-[1] flex max-w-screen-xl flex-col justify-between',
         props.className,
       )}
     >
