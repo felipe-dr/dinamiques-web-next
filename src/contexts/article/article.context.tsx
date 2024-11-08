@@ -1,14 +1,18 @@
 'use client';
 
 import { articlesMock } from '@/mocks';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+
+import { allActiveCategories, useCategoryContext } from '@/contexts';
 
 import { ArticleModel, CategoryModel } from '@/models';
-
-import {
-  allCategories,
-  useCategoryContext,
-} from '../category/category.context';
 
 interface ArticleContextData {
   filteredArticles: ArticleModel[];
@@ -19,65 +23,70 @@ interface ArticleContextData {
 interface ArticleContextReturn {
   filteredArticles: ArticleModel[];
   searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
-  handleArticleFilter: (query: string) => void;
+  handleArticlesFilter: (query: string) => void;
 }
 
 interface ArticleProviderProps {
   children: React.ReactNode;
 }
 
-// TODO: change mock to api
-const ArticleContext = createContext<ArticleContextData | undefined>(undefined);
+const ArticleContext = createContext<ArticleContextData>(
+  {} as ArticleContextData,
+);
 
 export function ArticleProvider({
   children,
 }: ArticleProviderProps): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [allArticles, setAllArticles] = useState<ArticleModel[]>([]);
-  const { filteredCategory } = useCategoryContext();
+  const [articles, setArticles] = useState<ArticleModel[]>([]);
+  const { activeCategory } = useCategoryContext();
 
-  const filterArticles = (
-    articles: ArticleModel[],
-    query: string,
-    category: CategoryModel,
-  ): ArticleModel[] => {
-    let filtered = articles;
-
-    if (category.id !== allCategories.id) {
-      filtered = filtered.filter(
-        (article) => article.category.name === category.name,
-      );
-    }
-
-    if (query) {
-      filtered = filtered.filter(
-        (article) =>
-          article.article.title.toLowerCase().includes(query.toLowerCase()) ||
-          article.article.content.toLowerCase().includes(query.toLowerCase()),
-      );
-    }
-
-    return filtered;
+  const handleSortArticlesByPublishedLastDate = (
+    inputArticles: ArticleModel[],
+  ) => {
+    return inputArticles.sort(
+      (a, b) =>
+        Number(b.article.publishedLastDate) -
+        Number(a.article.publishedLastDate),
+    );
   };
 
-  useEffect(() => {
-    const loadArticles = async () => {
-      const fetchedArticles: ArticleModel[] = articlesMock as ArticleModel[];
+  const handleArticlesFilter = useCallback(
+    (
+      inputArticles: ArticleModel[],
+      category: CategoryModel,
+      query: string,
+    ): ArticleModel[] => {
+      let filteredArticles = inputArticles;
+      const isSpecificCategory = category.id !== allActiveCategories.id;
 
-      setAllArticles(fetchedArticles);
-    };
+      if (isSpecificCategory) {
+        filteredArticles = filteredArticles.filter(
+          (article) => article.category.name === category.name,
+        );
+      }
 
-    loadArticles();
-  }, []);
+      if (query) {
+        filteredArticles = filteredArticles.filter(
+          ({ article }) =>
+            article.title.toLowerCase().includes(query.toLowerCase()) ||
+            article.content.toLowerCase().includes(query.toLowerCase()),
+        );
+      }
+
+      return handleSortArticlesByPublishedLastDate(filteredArticles);
+    },
+    [],
+  );
 
   const filteredArticles = useMemo(() => {
-    if (filteredCategory.id === allCategories.id) {
-      return filterArticles(allArticles, searchQuery, allCategories);
-    }
+    const categoryToFilter =
+      activeCategory.id === allActiveCategories.id
+        ? allActiveCategories
+        : activeCategory;
 
-    return filterArticles(allArticles, searchQuery, filteredCategory);
-  }, [allArticles, searchQuery, filteredCategory]);
+    return handleArticlesFilter(articles, categoryToFilter, searchQuery);
+  }, [articles, handleArticlesFilter, activeCategory, searchQuery]);
 
   const value = useMemo(
     () => ({
@@ -88,28 +97,37 @@ export function ArticleProvider({
     [filteredArticles, searchQuery],
   );
 
+  // TODO: change mock to api
+  useEffect(() => {
+    const handleGetAllArticles = async () => {
+      const allArticles: ArticleModel[] = articlesMock as ArticleModel[];
+
+      setArticles(allArticles);
+    };
+
+    handleGetAllArticles();
+  }, []);
+
   return (
     <ArticleContext.Provider value={value}>{children}</ArticleContext.Provider>
   );
 }
 
 export function useArticleContext(): ArticleContextReturn {
-  const context = useContext(ArticleContext);
-
-  if (!context) {
+  if (useContext(ArticleContext) === undefined) {
     throw new Error('useArticleContext must be used within an ArticleProvider');
   }
 
-  const { filteredArticles, searchQuery, setSearchQuery } = context;
+  const { filteredArticles, searchQuery, setSearchQuery } =
+    useContext(ArticleContext);
 
-  const handleArticleFilter = (query: string) => {
+  const handleArticlesFilter = (query: string) => {
     setSearchQuery(query);
   };
 
   return {
     filteredArticles,
     searchQuery,
-    setSearchQuery,
-    handleArticleFilter,
+    handleArticlesFilter,
   };
 }
