@@ -12,7 +12,7 @@ import { InputComponent } from '@/components';
 export function SearchInputComponent({
   ...props
 }: ComponentProps<'input'>): JSX.Element {
-  const { searchQuery, handleArticleFilter } = useArticleContext();
+  const { searchQuery, handleArticlesFilter } = useArticleContext();
 
   return (
     <>
@@ -23,7 +23,7 @@ export function SearchInputComponent({
         placeholder="Buscar por título ou conteúdo"
         value={searchQuery}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          handleArticleFilter(event.target.value)
+          handleArticlesFilter(event.target.value)
         }
       />
       <MagnifyingGlassIcon className="absolute right-4 top-1/2 size-[1.042rem] -translate-y-1/2 text-primary-3 lg:right-5 lg:size-[1.34rem]" />
