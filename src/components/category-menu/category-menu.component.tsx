@@ -12,27 +12,27 @@ import {
 
 export function CategoryMenuComponent(): JSX.Element {
   const {
-    allCategories,
-    handleCategoryFilter,
-    handleCategoriesAlphabeticalOrder,
+    allActiveCategories,
+    handleCategoriesFilter: handleCategoryFilter,
+    handleCategoriesAlphabetically,
   } = useCategoryContext();
 
   const categoriesAlphabeticalOrder =
-    handleCategoriesAlphabeticalOrder(categoriesMock);
+    handleCategoriesAlphabetically(categoriesMock);
 
   return (
     <TabsComponent
       className="mx-auto w-full overflow-x-auto rounded-lg border border-base-14 bg-base-15 text-center"
-      defaultValue={allCategories.name}
+      defaultValue={allActiveCategories.name}
     >
       <TabsListComponent>
         <TabsTriggerComponent
-          key={allCategories.id}
-          value={allCategories.name}
-          style={{ borderColor: allCategories.color }}
-          onClick={() => handleCategoryFilter(allCategories)}
+          key={allActiveCategories.id}
+          value={allActiveCategories.name}
+          style={{ borderColor: allActiveCategories.color }}
+          onClick={() => handleCategoryFilter(allActiveCategories)}
         >
-          {allCategories.name}
+          {allActiveCategories.name}
         </TabsTriggerComponent>
         {categoriesAlphabeticalOrder.map((category) => (
           <TabsTriggerComponent
