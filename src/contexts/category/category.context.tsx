@@ -5,15 +5,15 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import { CategoryModel } from '@/models';
 
 interface CategoryContextData {
-  filteredCategory: CategoryModel;
-  setFilteredCategory: React.Dispatch<React.SetStateAction<CategoryModel>>;
+  activeCategory: CategoryModel;
+  setActiveCategory: React.Dispatch<React.SetStateAction<CategoryModel>>;
 }
 
 interface CategoryContextReturn {
-  filteredCategory: CategoryModel;
-  allCategories: CategoryModel;
-  handleCategoryFilter: (activeCategory: CategoryModel) => void;
-  handleCategoriesAlphabeticalOrder: (
+  activeCategory: CategoryModel;
+  allActiveCategories: CategoryModel;
+  handleCategoriesFilter: (category: CategoryModel) => void;
+  handleCategoriesAlphabetically: (
     categories: CategoryModel[],
   ) => CategoryModel[];
 }
@@ -26,7 +26,7 @@ const CategoryContext = createContext<CategoryContextData>(
   {} as CategoryContextData,
 );
 
-export const allCategories = {
+export const allActiveCategories = {
   id: '0',
   name: 'todos',
   color: '#404040',
@@ -35,15 +35,15 @@ export const allCategories = {
 export function CategoryProvider({
   children,
 }: CategoryProviderProps): JSX.Element {
-  const [filteredCategory, setFilteredCategory] =
-    useState<CategoryModel>(allCategories);
+  const [activeCategory, setActiveCategory] =
+    useState<CategoryModel>(allActiveCategories);
 
   const value = useMemo(
     () => ({
-      filteredCategory,
-      setFilteredCategory,
+      activeCategory,
+      setActiveCategory,
     }),
-    [filteredCategory],
+    [activeCategory],
   );
 
   return (
@@ -60,22 +60,22 @@ export function useCategoryContext(): CategoryContextReturn {
     );
   }
 
-  const { filteredCategory, setFilteredCategory } = useContext(CategoryContext);
+  const { activeCategory, setActiveCategory } = useContext(CategoryContext);
 
-  const handleCategoryFilter = (activeCategory: CategoryModel) => {
-    setFilteredCategory(activeCategory);
+  const handleCategoriesFilter = (category: CategoryModel) => {
+    setActiveCategory(category);
   };
 
-  const handleCategoriesAlphabeticalOrder = (
+  const handleCategoriesAlphabetically = (
     categories: CategoryModel[],
   ): CategoryModel[] => {
     return categories.sort((a, b) => a.name.localeCompare(b.name));
   };
 
   return {
-    filteredCategory,
-    allCategories,
-    handleCategoryFilter,
-    handleCategoriesAlphabeticalOrder,
+    activeCategory,
+    allActiveCategories,
+    handleCategoriesFilter,
+    handleCategoriesAlphabetically,
   };
 }
