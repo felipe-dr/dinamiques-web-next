@@ -199,7 +199,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         </ul>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
-      publishedLastDate: new Date('2023-10-30T14:30:00Z'),
+      publishedLastDate: new Date('2024-02-12T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-30T14:30:00Z'),
       updatedAt: new Date('2023-10-30T14:30:00Z'),
@@ -229,7 +229,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         <p>Exemplo de metáfora: "A vida é uma viagem."</p>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
-      publishedLastDate: new Date('2023-10-29T14:30:00Z'),
+      publishedLastDate: new Date('2021-08-10T11:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
       updatedAt: new Date('2023-10-29T14:30:00Z'),
@@ -371,10 +371,10 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         </ul>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
-      publishedLastDate: new Date('2020-09-20T11:35:00Z'),
+      publishedLastDate: new Date('2024-04-06T14:30:00Z'),
       isPublished: true,
-      createdAt: new Date('2023-10-29T14:30:00Z'),
-      updatedAt: new Date('2023-10-29T14:30:00Z'),
+      createdAt: new Date('2024-04-06T14:30:00Z'),
+      updatedAt: new Date('2024-04-06T14:30:00Z'),
       createdBy: '3',
       updatedBy: '1',
     },
@@ -428,7 +428,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         </ul>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/historia/600/480',
-      publishedLastDate: new Date('2023-10-27T14:30:00Z'),
+      publishedLastDate: new Date('2024-06-11T10:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-27T14:30:00Z'),
       updatedAt: new Date('2023-10-27T14:30:00Z'),
@@ -457,7 +457,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         </ul>
       `,
       highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
-      publishedLastDate: new Date('2023-10-26T14:30:00Z'),
+      publishedLastDate: new Date('2024-09-08T14:35:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-26T14:30:00Z'),
       updatedAt: new Date('2023-10-26T14:30:00Z'),
