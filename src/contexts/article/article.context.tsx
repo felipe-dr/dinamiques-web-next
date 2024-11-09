@@ -43,7 +43,7 @@ export function ArticleProvider({
 
   const handleSortArticlesByPublishedLastDate = (
     inputArticles: ArticleModel[],
-  ) => {
+  ): ArticleModel[] => {
     return inputArticles.sort(
       (a, b) =>
         Number(b.article.publishedLastDate) -
