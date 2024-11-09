@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import {
-  ButtonComponent,
+  SigninDialogComponent,
   MobileMenuButtonComponent,
   NavigationMenuLinkComponent,
 } from '@/components';
@@ -46,6 +46,9 @@ export function NavigationMenuComponent(): JSX.Element {
               onClick={() => setShowNavigationMenu(false)}
             />
           ))}
+          <li className="border-t border-base-14 p-5">
+            <SigninDialogComponent />
+          </li>
         </ul>
       </nav>
       <nav className="hidden md:block">
@@ -58,7 +61,9 @@ export function NavigationMenuComponent(): JSX.Element {
           ))}
         </ul>
       </nav>
-      <ButtonComponent className="hidden md:block">Entrar</ButtonComponent>
+      <div className="hidden md:block">
+        <SigninDialogComponent />
+      </div>
     </>
   );
 }
