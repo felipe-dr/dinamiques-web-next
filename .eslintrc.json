@@ -35,7 +35,16 @@
       "warn",
       {
         "newlinesBetween": "always",
-        "groups": ["module", "/@/styles/", ["parent", "sibling", "index"]],
+        "groups": [
+          "module",
+          "/@/styles/",
+          "/@/contexts/",
+          "/@/libs/",
+          "/@/utils/",
+          "/@/models/",
+          "/@/components/",
+          ["parent", "sibling", "index"]
+        ],
         "alphabetize": {
           "order": "asc",
           "ignoreCase": true
