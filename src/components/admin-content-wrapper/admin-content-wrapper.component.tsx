@@ -28,5 +28,5 @@ interface AdminContentWrapperSectionComponentProps
 export function AdminContentWrapperSectionComponent({
   children,
 }: AdminContentWrapperSectionComponentProps): JSX.Element {
-  return <section className="grid px-5 pb-5">{children}</section>;
+  return <section className="grid p-5">{children}</section>;
 }
