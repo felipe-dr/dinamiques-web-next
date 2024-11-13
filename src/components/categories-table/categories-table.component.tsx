@@ -2,14 +2,16 @@
 
 import { categoriesMock } from '@/mocks';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { formattedDateAuditFields } from '@/libs';
+import { cn, formattedDateAuditFields } from '@/libs';
 
 import {
   AlertDialogBoxComponent,
   AlertDialogComponent,
   AlertDialogTriggerComponent,
+  buttonVariants,
   PaginationComponent,
   PaginationContentComponent,
   PaginationItemComponent,
@@ -57,7 +59,16 @@ export function CategoriesTableComponent(): JSX.Element {
             <TableCellComponent className="font-semibold">
               {category.id}
             </TableCellComponent>
-            <TableCellComponent>{category.name}</TableCellComponent>
+            <TableCellComponent>
+              <Link
+                className={cn(
+                  `${buttonVariants({ variant: 'link' })} font-normal text-base-white text-sm lg:text-sm p-0 lg:p-0`,
+                )}
+                href={`/admin/categories/${category.id}`}
+              >
+                {category.name}
+              </Link>
+            </TableCellComponent>
             <TableCellComponent>{category.color}</TableCellComponent>
             <TableCellComponent
               className={category.isActive ? 'text-success-4' : 'text-error-4'}
@@ -97,7 +108,7 @@ export function CategoriesTableComponent(): JSX.Element {
       </TableBodyComponent>
       <TableFooterComponent>
         <TableRowComponent className="hover:bg-transparent">
-          <TableCellComponent colSpan={5}>
+          <TableCellComponent colSpan={9}>
             <PaginationComponent>
               <PaginationContentComponent>
                 <PaginationItemComponent>
