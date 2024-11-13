@@ -48,7 +48,9 @@ export function SigninDialogComponent(): JSX.Element {
   return (
     <DialogComponent onOpenChange={handleClose}>
       <DialogTriggerComponent asChild>
-        <ButtonComponent className="w-full">Entrar</ButtonComponent>
+        <ButtonComponent color="primary" className="w-full">
+          Entrar
+        </ButtonComponent>
       </DialogTriggerComponent>
       <DialogContentComponent className="sm:max-w-screen-sm">
         <DialogHeaderComponent>
@@ -60,8 +62,8 @@ export function SigninDialogComponent(): JSX.Element {
         </DialogHeaderComponent>
         <FormComponent {...signinDialogForm}>
           <form
-            onSubmit={signinDialogForm.handleSubmit(handleSubmit)}
             className="space-y-8"
+            onSubmit={signinDialogForm.handleSubmit(handleSubmit)}
           >
             <FormFieldComponent
               control={signinDialogForm.control}
@@ -97,7 +99,9 @@ export function SigninDialogComponent(): JSX.Element {
               )}
             />
             <DialogFooterComponent>
-              <ButtonComponent type="submit">Entrar</ButtonComponent>
+              <ButtonComponent color="primary" type="submit">
+                Entrar
+              </ButtonComponent>
             </DialogFooterComponent>
           </form>
         </FormComponent>
