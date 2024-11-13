@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ComponentProps, JSX } from 'react';
+import { ComponentProps } from 'react';
 
 export function LogoComponent(props: ComponentProps<'svg'>): JSX.Element {
   return (

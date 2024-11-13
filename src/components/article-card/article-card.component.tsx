@@ -1,7 +1,7 @@
 import { UserIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ComponentProps, JSX } from 'react';
+import { ComponentProps } from 'react';
 
 import { cn } from '@/libs';
 
