@@ -1,6 +1,7 @@
 import {
   ArrowLeftEndOnRectangleIcon,
   DocumentTextIcon,
+  HomeIcon,
   TagIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -36,6 +37,15 @@ export function AdminSidebarComponent(): JSX.Element {
     <SidebarComponent>
       <SidebarHeaderComponent />
       <SidebarContentComponent>
+        <SidebarMenuComponent>
+          <SidebarMenuItemComponent className="capitalize">
+            <SidebarMenuButtonComponent asChild>
+              <Link href="/admin">
+                <HomeIcon /> Início
+              </Link>
+            </SidebarMenuButtonComponent>
+          </SidebarMenuItemComponent>
+        </SidebarMenuComponent>
         <SidebarGroupComponent>
           <SidebarGroupLabelComponent>Gestão</SidebarGroupLabelComponent>
           <SidebarGroupContentComponent>
@@ -57,7 +67,7 @@ export function AdminSidebarComponent(): JSX.Element {
           </SidebarGroupContentComponent>
         </SidebarGroupComponent>
       </SidebarContentComponent>
-      <SidebarFooterComponent className="flex-row justify-between px-4 text-sm">
+      <SidebarFooterComponent className="flex-row justify-between px-2 text-sm">
         <span>João Silva</span>
         <button type="button">
           <ArrowLeftEndOnRectangleIcon className="size-5" />
