@@ -4,6 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { CategoryModel } from '@/models';
+
 import {
   ButtonComponent,
   FormComponent,
@@ -19,19 +21,29 @@ import {
 
 import { categorySchema } from './category.schema';
 
-export function CategoryFormComponent(): JSX.Element {
+interface CategoryFormComponentProps {
+  category?: CategoryModel;
+}
+
+export function CategoryFormComponent({
+  category,
+}: CategoryFormComponentProps): JSX.Element {
   const categoriesForm = useForm<z.infer<typeof categorySchema>>({
     resolver: zodResolver(categorySchema),
     defaultValues: {
-      name: '',
-      color: '',
-      isActive: true,
+      name: category?.name || '',
+      color: category?.color || '',
+      isActive: category?.isActive === false ? false : true,
     },
   });
 
   // TODO: change to send to api
   function handleSubmit(values: z.infer<typeof categorySchema>): void {
-    console.log(values);
+    if (category) {
+      console.log('Editar', values);
+    } else {
+      console.log('Adicionar', values);
+    }
   }
 
   return (
@@ -88,6 +100,7 @@ export function CategoryFormComponent(): JSX.Element {
                   className="!my-0"
                   checked={field.value}
                   onCheckedChange={field.onChange}
+                  disabled={!category}
                 />
               </FormControlComponent>
               <FormMessageComponent />
@@ -99,7 +112,7 @@ export function CategoryFormComponent(): JSX.Element {
           color="primary"
           type="submit"
         >
-          Adicionar
+          {category ? 'Salvar' : 'Adicionar'}
         </ButtonComponent>
       </form>
     </FormComponent>
