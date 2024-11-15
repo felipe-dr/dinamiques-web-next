@@ -193,7 +193,7 @@ export function ArticleFormComponent({
           control={articlesForm.control}
           name="content"
           render={() => (
-            <FormItemComponent>
+            <FormItemComponent className="min-h-[14.688rem]">
               <FormLabelComponent>Conteúdo</FormLabelComponent>
               <FormControlComponent>
                 <MDEditor
