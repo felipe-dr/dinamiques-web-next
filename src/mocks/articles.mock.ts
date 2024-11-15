@@ -1,8 +1,9 @@
 export const articlesMock = [
   {
     id: '1',
-    category: { name: 'biologia', color: '#5E1B99' },
+    category: { id: '2', name: 'biologia', color: '#5E1B99' },
     teacher: {
+      id: '1',
       name: 'Ana Lima',
       avatarImageUrl: 'https://picsum.photos/seed/pessoa/42/42',
     },
@@ -33,14 +34,14 @@ export const articlesMock = [
     },
   },
   {
-    id: 2,
-    category: { name: 'português', color: '#991B1E' },
-    teacher: { name: 'Mariana Costa' },
+    id: '2',
+    category: { id: '1', name: 'português', color: '#991B1E' },
+    teacher: { id: '2', name: 'Mariana Costa' },
     article: {
       title: 'Concordância Verbal',
       slug: 'concordancia-verbal',
       summary: 'Entenda as regras da concordância verbal na língua portuguesa.',
-      readingTime: 12,
+      readingTime: 88,
       content: `
 ## Regras Básicas
 
@@ -93,9 +94,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 3,
-    category: { name: 'matemática', color: '#1B6099' },
-    teacher: { name: 'Frederico de Souza' },
+    id: '3',
+    category: { id: '5', name: 'matemática', color: '#1B6099' },
+    teacher: { id: '3', name: 'Frederico de Souza' },
     article: {
       title: 'Geometria: Círculo e suas Propriedades',
       slug: 'geometria-circulo',
@@ -121,9 +122,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 4,
-    category: { name: 'história', color: '#99561B' },
-    teacher: { name: 'Carlos Mendes' },
+    id: '4',
+    category: { id: '4', name: 'história', color: '#99561B' },
+    teacher: { id: '4', name: 'Carlos Mendes' },
     article: {
       title: 'A Independência do Brasil',
       slug: 'independencia-do-brasil',
@@ -150,9 +151,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 5,
-    category: { name: 'biologia', color: '#5E1B99' },
-    teacher: { name: 'Ana Lima' },
+    id: '5',
+    category: { id: '2', name: 'biologia', color: '#5E1B99' },
+    teacher: { id: '1', name: 'Ana Lima' },
     article: {
       title: 'Fotossíntese',
       slug: 'fotossintese',
@@ -179,9 +180,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 6,
-    category: { name: 'biologia', color: '#5E1B99' },
-    teacher: { name: 'Roberta Santos' },
+    id: '6',
+    category: { id: '2', name: 'biologia', color: '#5E1B99' },
+    teacher: { id: '5', name: 'Roberta Santos' },
     article: {
       title: 'Evolução das Espécies',
       slug: 'evolucao-das-especies',
@@ -208,9 +209,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 7,
-    category: { name: 'português', color: '#991B1E' },
-    teacher: { name: 'Mariana Costa' },
+    id: '7',
+    category: { id: '1', name: 'português', color: '#991B1E' },
+    teacher: { id: '2', name: 'Mariana Costa' },
     article: {
       title: 'Figuras de Linguagem',
       slug: 'figuras-de-linguagem',
@@ -238,9 +239,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 8,
-    category: { name: 'matemática', color: '#1B6099' },
-    teacher: { name: 'Frederico de Souza' },
+    id: '8',
+    category: { id: '5', name: 'matemática', color: '#1B6099' },
+    teacher: { id: '3', name: 'Frederico de Souza' },
     article: {
       title: 'Estatística: Média, Mediana e Moda',
       slug: 'estatistica-media-mediana-moda',
@@ -266,9 +267,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 9,
-    category: { name: 'história', color: '#99561B' },
-    teacher: { name: 'Carlos Mendes' },
+    id: '9',
+    category: { id: '4', name: 'história', color: '#99561B' },
+    teacher: { id: '4', name: 'Carlos Mendes' },
     article: {
       title: 'As Guerras Mundiais',
       slug: 'guerras-mundiais',
@@ -294,9 +295,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 10,
-    category: { name: 'biologia', color: '#5E1B99' },
-    teacher: { name: 'Roberta Santos' },
+    id: '10',
+    category: { id: '2', name: 'biologia', color: '#5E1B99' },
+    teacher: { id: '5', name: 'Roberta Santos' },
     article: {
       title: 'Biodiversidade e Ecossistemas',
       slug: 'biodiversidade-ecossistemas',
@@ -323,9 +324,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 11,
-    category: { name: 'biologia', color: '#5E1B99' },
-    teacher: { name: 'Roberta Santos' },
+    id: '11',
+    category: { id: '2', name: 'biologia', color: '#5E1B99' },
+    teacher: { id: '5', name: 'Roberta Santos' },
     article: {
       title: 'Cadeias Alimentares',
       slug: 'cadeias-alimentares',
@@ -353,9 +354,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 12,
-    category: { name: 'português', color: '#991B1E' },
-    teacher: { name: 'Mariana Costa' },
+    id: '12',
+    category: { id: '1', name: 'português', color: '#991B1E' },
+    teacher: { id: '2', name: 'Mariana Costa' },
     article: {
       title: 'Crase: Uso e Dicas',
       slug: 'crase-uso-e-dicas',
@@ -380,9 +381,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 13,
-    category: { name: 'matemática', color: '#1B6099' },
-    teacher: { name: 'Frederico de Souza' },
+    id: '13',
+    category: { id: '5', name: 'matemática', color: '#1B6099' },
+    teacher: { id: '3', name: 'Frederico de Souza' },
     article: {
       title: 'Equações do Primeiro Grau',
       slug: 'equacoes-primeiro-grau',
@@ -409,9 +410,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 14,
-    category: { name: 'história', color: '#99561B' },
-    teacher: { name: 'Carlos Mendes' },
+    id: '14',
+    category: { id: '4', name: 'história', color: '#99561B' },
+    teacher: { id: '4', name: 'Carlos Mendes' },
     article: {
       title: 'A Revolução Francesa',
       slug: 'revolucao-francesa',
@@ -437,9 +438,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 15,
-    category: { name: 'biologia', color: '#5E1B99' },
-    teacher: { name: 'Roberta Santos' },
+    id: '15',
+    category: { id: '2', name: 'biologia', color: '#5E1B99' },
+    teacher: { id: '5', name: 'Roberta Santos' },
     article: {
       title: 'Ciclo da Água',
       slug: 'ciclo-da-agua',
@@ -466,9 +467,9 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
     },
   },
   {
-    id: 16,
-    category: { name: 'português', color: '#991B1E' },
-    teacher: { name: 'Mariana Costa' },
+    id: '16',
+    category: { id: '1', name: 'português', color: '#991B1E' },
+    teacher: { id: '2', name: 'Mariana Costa' },
     article: {
       title: 'Gêneros Textuais',
       slug: 'generos-textuais',
