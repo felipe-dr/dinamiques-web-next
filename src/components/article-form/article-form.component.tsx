@@ -115,7 +115,9 @@ export function ArticleFormComponent({
                 defaultValue={field.value}
               >
                 <FormControlComponent>
-                  <SelectTriggerComponent>
+                  <SelectTriggerComponent
+                    className={field.value === '' ? 'text-base-9' : ''}
+                  >
                     <SelectValueComponent placeholder="Selecione a categoria" />
                   </SelectTriggerComponent>
                 </FormControlComponent>
