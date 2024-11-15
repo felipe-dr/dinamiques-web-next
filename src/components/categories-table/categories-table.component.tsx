@@ -27,6 +27,7 @@ import {
   TableRowComponent,
 } from '@/components';
 
+// TODO: add filter by terms
 export function CategoriesTableComponent(): JSX.Element {
   const router = useRouter();
 
