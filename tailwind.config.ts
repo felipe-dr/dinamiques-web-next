@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 const config: Config = {
   content: [
@@ -65,6 +66,16 @@ const config: Config = {
         5: 'rgba(var(--error-5), <alpha-value>)',
         6: 'rgba(var(--error-6), <alpha-value>)',
         7: 'rgba(var(--error-7), <alpha-value>)',
+      },
+      sidebar: {
+        DEFAULT: 'hsl(var(--sidebar-background))',
+        foreground: 'hsl(var(--sidebar-foreground))',
+        primary: 'hsl(var(--sidebar-primary))',
+        'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+        accent: 'hsl(var(--sidebar-accent))',
+        'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+        border: 'hsl(var(--sidebar-border))',
+        ring: 'hsl(var(--sidebar-ring))',
       },
     },
     fontFamily: {
@@ -199,5 +210,6 @@ const config: Config = {
       },
     },
   },
+  plugins: [tailwindcssAnimate],
 };
 export default config;

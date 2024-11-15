@@ -1,10 +1,11 @@
 export interface ArticleModel {
   id: string;
   category: {
+    id: string;
     name: string;
     color: string;
   };
-  teacher: { name: string; avatarImageUrl: string };
+  teacher: { id: string; name: string; avatarImageUrl: string };
   article: {
     title: string;
     slug: string;

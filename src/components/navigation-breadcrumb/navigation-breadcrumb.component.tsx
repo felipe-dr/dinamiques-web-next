@@ -1,7 +1,9 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { JSX } from 'react';
+import { ComponentProps } from 'react';
+
+import { cn } from '@/libs';
 
 import {
   BreadcrumbComponent,
@@ -10,12 +12,14 @@ import {
   BreadcrumbListComponent,
 } from '@/components';
 
-interface NavigationBreadcrumbComponentProps {
+export interface NavigationBreadcrumbComponentProps
+  extends ComponentProps<'nav'> {
   breadcrumbItems: { label: string; path: string }[];
 }
 
 export function NavigationBreadcrumbComponent({
   breadcrumbItems,
+  ...props
 }: NavigationBreadcrumbComponentProps): JSX.Element {
   const currentPathname = usePathname();
 
@@ -35,7 +39,9 @@ export function NavigationBreadcrumbComponent({
   );
 
   return (
-    <BreadcrumbComponent className="mb-4 md:ms-8 lg:ms-11">
+    <BreadcrumbComponent
+      className={cn('mb-4 md:ms-8 lg:ms-11', props.className)}
+    >
       <BreadcrumbListComponent>
         <BreadcrumbItemComponent>
           <BreadcrumbLinkComponent href={urlLabelsAndPathnames[0].path}>
