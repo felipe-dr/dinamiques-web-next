@@ -1,9 +1,9 @@
 'use client';
 
 import {
-  ArrowDownIcon,
-  ArrowUpIcon,
   CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
 } from '@heroicons/react/24/outline';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
@@ -30,7 +30,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ArrowDownIcon className="size-4 opacity-50" />
+      <ChevronDownIcon className="size-4" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -48,7 +48,7 @@ const SelectScrollUpButton = React.forwardRef<
     )}
     {...props}
   >
-    <ArrowUpIcon className="size-4" />
+    <ChevronUpIcon className="size-4" />
   </SelectPrimitive.ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
@@ -65,7 +65,7 @@ const SelectScrollDownButton = React.forwardRef<
     )}
     {...props}
   >
-    <ArrowDownIcon className="size-4" />
+    <ChevronDownIcon className="size-4" />
   </SelectPrimitive.ScrollDownButton>
 ));
 SelectScrollDownButton.displayName =
@@ -79,7 +79,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-base-12 bg-base-15 text-base-white shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        'relative z-50 max-h-[25rem] min-w-[8rem] overflow-hidden rounded-md border border-base-12 bg-base-15 text-base-white shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
         position === 'popper' &&
           'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
         className,
@@ -109,7 +109,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn('py-1.5 pl-8 pr-2 text-sm font-semibold', className)}
+    className={cn('px-4 py-3 lg:px-5 lg:py-4 text-sm font-semibold', className)}
     {...props}
   />
 ));
@@ -122,7 +122,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex w-full cursor-default select-none items-center rounded-sm py-1 pl-8 pr-2 text-sm outline-none focus:bg-base-13 focus:text-base-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      'relative flex w-full cursor-default select-none items-center rounded-sm pr-4 ps-8 py-3 lg:pr-5 lg:py-4 text-sm outline-none focus:bg-base-13 focus:text-base-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className,
     )}
     {...props}
