@@ -9,7 +9,7 @@ import {
   NavigationBreadcrumbComponent,
 } from '@/components';
 
-async function getCategory(id: string) {
+async function getCategory(id: string): Promise<CategoryModel | undefined> {
   const category = categoriesMock.find(
     (categoryMock) => categoryMock.id === id,
   );
@@ -17,13 +17,13 @@ async function getCategory(id: string) {
   return category;
 }
 
-interface ArticlePageProps {
+interface CategoryEditAdminPageProps {
   params: { id: string };
 }
 
 export default async function CategoryEditAdminPage({
   params: { id },
-}: ArticlePageProps): Promise<JSX.Element> {
+}: CategoryEditAdminPageProps): Promise<JSX.Element> {
   const category = (await getCategory(id)) as CategoryModel;
 
   const breadcrumbItems = [
