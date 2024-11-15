@@ -25,6 +25,7 @@ import {
   SelectTriggerComponent,
   SelectValueComponent,
   SwitchComponent,
+  TextareaComponent,
 } from '@/components';
 
 import { articleSchema } from './article.schema';
@@ -159,7 +160,7 @@ export function ArticleFormComponent({
             <FormItemComponent>
               <FormLabelComponent>Resumo</FormLabelComponent>
               <FormControlComponent>
-                <InputComponent
+                <TextareaComponent
                   placeholder="Digite o resumo"
                   maxLength={200}
                   {...field}
