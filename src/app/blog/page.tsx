@@ -1,5 +1,7 @@
 import { ArticleProvider, CategoryProvider } from '@/contexts/';
 
+import { getArticles, getCategories } from '@/libs';
+
 import {
   ArticlesSectionComponent,
   CategoryMenuComponent,
@@ -10,7 +12,10 @@ import {
   TitleComponent,
 } from '@/components';
 
-export default function BlogPage(): JSX.Element {
+export default async function BlogPage(): Promise<JSX.Element> {
+  const categories = await getCategories();
+  const articles = await getArticles();
+
   return (
     <>
       <HeroComponent>
@@ -22,9 +27,13 @@ export default function BlogPage(): JSX.Element {
       </HeroComponent>
       <main>
         <CategoryProvider>
-          <ArticleProvider>
+          <ArticleProvider fetchedArticles={articles!}>
             <SectionBoxComponent className="pb-0 lg:pb-0" tag="section">
-              <CategoryMenuComponent />
+              {categories ? (
+                <CategoryMenuComponent categories={categories} />
+              ) : (
+                <p>Não há categorias disponíveis no momento.</p>
+              )}
               <form className="relative mt-10 w-full max-w-[27.5rem] md:self-start lg:mt-11">
                 <SearchInputComponent />
               </form>
