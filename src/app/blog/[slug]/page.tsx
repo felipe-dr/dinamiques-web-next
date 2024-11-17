@@ -1,13 +1,18 @@
-import { articlesMock } from '@/mocks';
 import { UserIcon } from '@heroicons/react/24/outline';
+
+import {
+  getArticleBySlug,
+  getArticles,
+  getRecommendedArticlesByCategory,
+} from '@/libs';
 
 import { ArticleModel } from '@/models';
 
 import {
   ArticleAuthorNameComponent,
-  ArticleCardComponent,
   ArticlePublishedLastDateComponent,
   ArticleReadingTimeComponent,
+  ArticlesRecommendationSectionComponent,
   AvatarComponent,
   AvatarImageComponent,
   ContentRendererComponent,
@@ -20,35 +25,12 @@ import {
   TitleComponent,
 } from '@/components';
 
-// TODO: migrate to context
-function filterArticlesByCategoryAndId(
-  articles: ArticleModel[],
-  categoryName: string,
-  excludeId: string,
-) {
-  return articles.filter(
-    (article: ArticleModel) =>
-      article.category.name === categoryName && article.id !== excludeId,
-  );
-}
+export async function generateStaticParams() {
+  const articles = await getArticles();
 
-function randomArticles(articles: ArticleModel[]) {
-  return articles.sort(() => Math.random() - 0.5);
-}
-
-function sortArticlesByDate(articles: ArticleModel[]) {
-  return articles.sort(
-    (a, b) =>
-      Number(b.article.publishedLastDate) - Number(a.article.publishedLastDate),
-  );
-}
-
-async function getArticle(slug: string) {
-  const article = articlesMock.find(
-    (articleMock) => articleMock.article.slug === slug,
-  );
-
-  return article;
+  return articles?.map(({ article }) => ({
+    slug: article.slug,
+  }));
 }
 
 interface ArticlePageProps {
@@ -58,9 +40,22 @@ interface ArticlePageProps {
 export default async function ArticlePage({
   params: { slug },
 }: ArticlePageProps): Promise<JSX.Element> {
-  const { id, category, teacher, article } = (await getArticle(
+  const { id, teacher, category, article } = (await getArticleBySlug(
     slug,
   )) as ArticleModel;
+
+  const recommendedArticles = await getRecommendedArticlesByCategory(
+    category.name,
+    id,
+  );
+
+  const backgroundImage = {
+    path: article.highlighImageUrl,
+    alt: article.title,
+    width: 1600,
+    height: 640,
+    isPriority: true,
+  };
 
   const breadcrumbItems = [
     {
@@ -72,26 +67,6 @@ export default async function ArticlePage({
       path: '',
     },
   ];
-
-  // TODO: removes mock
-  const articlesByCategoryAndId = filterArticlesByCategoryAndId(
-    articlesMock as ArticleModel[],
-    category.name,
-    id,
-  );
-  const randomArticlesByCategory = randomArticles(articlesByCategoryAndId);
-  const randomSomeArticlesByCategory = randomArticlesByCategory.slice(0, 3);
-  const randomSomeArticlesByCategoryAndSortByDate = sortArticlesByDate(
-    randomSomeArticlesByCategory,
-  );
-
-  const backgroundImage = {
-    path: article.highlighImageUrl,
-    alt: article.title,
-    width: 1600,
-    height: 640,
-    isPriority: true,
-  };
 
   return (
     <>
@@ -141,33 +116,10 @@ export default async function ArticlePage({
         >
           <ContentRendererComponent content={article.content} />
         </SectionBoxComponent>
-        {randomSomeArticlesByCategoryAndSortByDate.length > 0 && (
-          <SectionBoxComponent
-            className="border-y border-base-14 bg-base-16"
-            tag="section"
-            hasContainer={false}
-          >
-            <div className="container grid max-w-screen-xl flex-col items-center">
-              <TitleComponent
-                className="mb-10"
-                tag="h2"
-                hasDotDecorator={false}
-              >
-                Recomendados
-              </TitleComponent>
-              <div className="grid items-stretch justify-items-center gap-9 sm:grid-cols-articles-section">
-                {randomSomeArticlesByCategoryAndSortByDate.map(
-                  (randomArticle, index) => (
-                    <ArticleCardComponent
-                      className={`${index % 2 === 0 && randomSomeArticlesByCategoryAndSortByDate.length !== 1 ? 'md:justify-self-end' : 'md:justify-self-start'}`}
-                      key={randomArticle.id}
-                      article={randomArticle}
-                    />
-                  ),
-                )}
-              </div>
-            </div>
-          </SectionBoxComponent>
+        {recommendedArticles && recommendedArticles.length > 0 && (
+          <ArticlesRecommendationSectionComponent
+            articles={recommendedArticles}
+          />
         )}
       </main>
     </>
