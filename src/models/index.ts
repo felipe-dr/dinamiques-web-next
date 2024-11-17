@@ -1,2 +1,4 @@
-export * from './article.model';
-export * from './category.model';
+export * from './api-response/api-response.model';
+export * from './article/article.model';
+export * from './category/category.model';
+export * from './teacher/teacher.model';
