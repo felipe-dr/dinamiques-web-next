@@ -1,6 +1,5 @@
 'use client';
 
-import { articlesMock } from '@/mocks';
 import {
   createContext,
   useCallback,
@@ -11,6 +10,8 @@ import {
 } from 'react';
 
 import { allActiveCategories, useCategoryContext } from '@/contexts';
+
+import { handleSortingDescendingByPublishedLastDate } from '@/utils';
 
 import { ArticleModel, CategoryModel } from '@/models';
 
@@ -27,6 +28,7 @@ interface ArticleContextReturn {
 }
 
 interface ArticleProviderProps {
+  fetchedArticles: ArticleModel[];
   children: React.ReactNode;
 }
 
@@ -35,21 +37,12 @@ const ArticleContext = createContext<ArticleContextData>(
 );
 
 export function ArticleProvider({
+  fetchedArticles,
   children,
 }: ArticleProviderProps): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [articles, setArticles] = useState<ArticleModel[]>([]);
   const { activeCategory } = useCategoryContext();
-
-  const handleSortArticlesByPublishedLastDate = (
-    inputArticles: ArticleModel[],
-  ): ArticleModel[] => {
-    return inputArticles.sort(
-      (a, b) =>
-        Number(b.article.publishedLastDate) -
-        Number(a.article.publishedLastDate),
-    );
-  };
 
   const handleArticlesFilter = useCallback(
     (
@@ -74,7 +67,7 @@ export function ArticleProvider({
         );
       }
 
-      return handleSortArticlesByPublishedLastDate(filteredArticles);
+      return handleSortingDescendingByPublishedLastDate(filteredArticles);
     },
     [],
   );
@@ -97,16 +90,14 @@ export function ArticleProvider({
     [filteredArticles, searchQuery],
   );
 
-  // TODO: change mock to api
   useEffect(() => {
     const handleGetAllArticles = async () => {
-      const allArticles: ArticleModel[] = articlesMock as ArticleModel[];
+      const allArticles: ArticleModel[] = fetchedArticles;
 
       setArticles(allArticles);
     };
-
     handleGetAllArticles();
-  }, []);
+  }, [fetchedArticles]);
 
   return (
     <ArticleContext.Provider value={value}>{children}</ArticleContext.Provider>
