@@ -1,8 +1,8 @@
 'use client';
 
-import { categoriesMock } from '@/mocks';
-
 import { useCategoryContext } from '@/contexts';
+
+import { CategoryModel } from '@/models';
 
 import {
   TabsComponent,
@@ -10,7 +10,13 @@ import {
   TabsTriggerComponent,
 } from '@/components';
 
-export function CategoryMenuComponent(): JSX.Element {
+interface CategoryMenuComponentProps {
+  categories: CategoryModel[];
+}
+
+export function CategoryMenuComponent({
+  categories,
+}: CategoryMenuComponentProps): JSX.Element {
   const {
     allActiveCategories,
     handleCategoriesFilter: handleCategoryFilter,
@@ -18,7 +24,7 @@ export function CategoryMenuComponent(): JSX.Element {
   } = useCategoryContext();
 
   const categoriesAlphabeticalOrder =
-    handleCategoriesAlphabetically(categoriesMock);
+    handleCategoriesAlphabetically(categories);
 
   return (
     <TabsComponent
