@@ -1,11 +1,10 @@
+import { CategoryModel } from '../category/category.model';
+import { TeacherModel } from '../teacher/teacher.model';
+
 export interface ArticleModel {
   id: string;
-  category: {
-    id: string;
-    name: string;
-    color: string;
-  };
-  teacher: { id: string; name: string; avatarImageUrl: string };
+  category: CategoryModel;
+  teacher: TeacherModel;
   article: {
     title: string;
     slug: string;

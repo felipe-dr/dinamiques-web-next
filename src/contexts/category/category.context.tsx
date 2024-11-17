@@ -30,6 +30,11 @@ export const allActiveCategories = {
   id: '0',
   name: 'todos',
   color: '#404040',
+  isActive: true,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  createdBy: '1',
+  updatedBy: '1',
 };
 
 export function CategoryProvider({

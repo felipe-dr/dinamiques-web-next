@@ -6,6 +6,7 @@ export * from './article-card/article-card.component';
 export * from './article-form/article-form.component';
 export * from './article-published-last-date/article-published-last-date.component';
 export * from './article-reading-time/article-reading-time.component';
+export * from './articles-recommendation-section/articles-recommendation-section.component';
 export * from './articles-section/articles-section.component';
 export * from './articles-table/articles-table.component';
 export * from './categories-table/categories-table.component';
