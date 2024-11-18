@@ -45,4 +45,6 @@ export * from './ui/switch';
 export * from './ui/table';
 export * from './ui/tabs';
 export * from './ui/textarea';
+export * from './ui/toast';
+export * from './ui/toaster';
 export * from './ui/tooltip';
