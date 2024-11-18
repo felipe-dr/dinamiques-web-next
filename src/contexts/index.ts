@@ -1,3 +1,3 @@
 export * from './article/article.context';
 export * from './category/category.context';
-export * from './top-wrapper/top-wrapper.context';
+export * from './react-query/react-query.context';
