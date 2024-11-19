@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ArrowLeftEndOnRectangleIcon,
   DocumentTextIcon,
@@ -5,6 +7,11 @@ import {
   TagIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { useAuthContext } from '@/contexts';
+
+import { useToast } from '@/hooks';
 
 import {
   SidebarComponent,
@@ -33,6 +40,28 @@ const ADMIN_SIDEBAR_ITEMS = [
 ];
 
 export function AdminSidebarComponent(): JSX.Element {
+  const { toast } = useToast();
+  const router = useRouter();
+  const { userData } = useAuthContext();
+
+  const handleLogout = async () => {
+    const response = await fetch('/api/auth/signout', {
+      method: 'POST',
+    });
+
+    if (response.ok) {
+      toast({
+        title: 'Autenticação',
+        description: 'Logout efetuado com sucesso.',
+        variant: 'success',
+      });
+
+      router.push('/blog');
+    } else {
+      console.error('Erro ao realizar o logout');
+    }
+  };
+
   return (
     <SidebarComponent>
       <SidebarHeaderComponent />
@@ -68,8 +97,8 @@ export function AdminSidebarComponent(): JSX.Element {
         </SidebarGroupComponent>
       </SidebarContentComponent>
       <SidebarFooterComponent className="flex-row justify-between px-2 text-sm">
-        <span>João Silva</span>
-        <button type="button">
+        <span>{userData.username}</span>
+        <button type="button" onClick={handleLogout}>
           <ArrowLeftEndOnRectangleIcon className="size-5" />
         </button>
       </SidebarFooterComponent>
