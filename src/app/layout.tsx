@@ -1,5 +1,9 @@
 import { Inter } from 'next/font/google';
 
+import { AuthProvider, ReactQueryProvider } from '@/contexts';
+
+import { ToasterComponent, ToastProvider } from '@/components';
+
 import './styles/global.css';
 
 const inter = Inter({
@@ -17,7 +21,12 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-base-16 text-lg text-base-5 antialiased`}
       >
-        {children}
+        <AuthProvider>
+          <ReactQueryProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </ReactQueryProvider>
+        </AuthProvider>
+        <ToasterComponent />
       </body>
     </html>
   );

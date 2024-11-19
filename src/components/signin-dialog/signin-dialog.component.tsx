@@ -1,8 +1,19 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import { useAuthContext } from '@/contexts';
+
+import { useToast } from '@/hooks';
+
+import { signin } from '@/libs';
+
+import { AuthModel } from '@/models';
 
 import {
   ButtonComponent,
@@ -32,10 +43,30 @@ export function SigninDialogComponent(): JSX.Element {
       password: '',
     },
   });
+  const { checkAuthentication } = useAuthContext();
+  const router = useRouter();
+  const { toast } = useToast();
+  const { mutate, isPending, error, isError } = useMutation({
+    mutationFn: signin,
+    onSuccess: (data: AuthModel) => {
+      if (data.accessToken) {
+        checkAuthentication();
+        router.push('/admin');
 
-  // TODO: change to send to api
+        toast({
+          title: 'Autenticação',
+          description: 'Autenticação efetuada com sucesso.',
+          variant: 'success',
+        });
+      }
+    },
+    onError: (catchedError) => {
+      console.error(catchedError);
+    },
+  });
+
   function handleSubmit(values: z.infer<typeof signinDialogSchema>): void {
-    console.log(values);
+    mutate(values);
   }
 
   function handleClose(): void {
@@ -44,6 +75,16 @@ export function SigninDialogComponent(): JSX.Element {
       password: '',
     });
   }
+
+  useEffect(() => {
+    if (error?.message) {
+      toast({
+        title: 'Autenticação',
+        description: error.message,
+        variant: 'destructive',
+      });
+    }
+  }, [isError, error, toast]);
 
   return (
     <DialogComponent onOpenChange={handleClose}>
@@ -99,7 +140,11 @@ export function SigninDialogComponent(): JSX.Element {
               )}
             />
             <DialogFooterComponent>
-              <ButtonComponent color="primary" type="submit">
+              <ButtonComponent
+                color="primary"
+                type="submit"
+                disabled={isPending}
+              >
                 Entrar
               </ButtonComponent>
             </DialogFooterComponent>
