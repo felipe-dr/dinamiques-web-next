@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import {
-  SigninDialogComponent,
   MobileMenuButtonComponent,
   NavigationMenuLinkComponent,
 } from '@/components';
@@ -19,7 +18,13 @@ const NAVIGATION_MENU_ITEMS = [
   },
 ];
 
-export function NavigationMenuComponent(): JSX.Element {
+interface NavigationMenuComponentProps {
+  buttonSigninOrEnterAdminComponent: JSX.Element;
+}
+
+export function NavigationMenuComponent({
+  buttonSigninOrEnterAdminComponent,
+}: NavigationMenuComponentProps): JSX.Element {
   const [showNavigationMenu, setShowNavigationMenu] = useState<boolean>(false);
 
   const handleShowNavigationMenu = () => {
@@ -47,7 +52,7 @@ export function NavigationMenuComponent(): JSX.Element {
             />
           ))}
           <li className="border-t border-base-14 p-5">
-            <SigninDialogComponent />
+            {buttonSigninOrEnterAdminComponent}
           </li>
         </ul>
       </nav>
@@ -61,9 +66,7 @@ export function NavigationMenuComponent(): JSX.Element {
           ))}
         </ul>
       </nav>
-      <div className="hidden md:block">
-        <SigninDialogComponent />
-      </div>
+      <div className="hidden md:block">{buttonSigninOrEnterAdminComponent}</div>
     </>
   );
 }
