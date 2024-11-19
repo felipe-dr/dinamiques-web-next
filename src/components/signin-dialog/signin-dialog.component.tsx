@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { useAuthContext } from '@/contexts';
+
 import { useToast } from '@/hooks';
 
 import { signin } from '@/libs';
@@ -41,13 +43,21 @@ export function SigninDialogComponent(): JSX.Element {
       password: '',
     },
   });
+  const { checkAuthentication } = useAuthContext();
   const router = useRouter();
   const { toast } = useToast();
   const { mutate, isPending, error, isError } = useMutation({
     mutationFn: signin,
     onSuccess: (data: AuthModel) => {
       if (data.accessToken) {
+        checkAuthentication();
         router.push('/admin');
+
+        toast({
+          title: 'Autenticação',
+          description: 'Autenticação efetuada com sucesso.',
+          variant: 'success',
+        });
       }
     },
     onError: (catchedError) => {
@@ -69,7 +79,7 @@ export function SigninDialogComponent(): JSX.Element {
   useEffect(() => {
     if (error?.message) {
       toast({
-        title: 'Erro na autenticação',
+        title: 'Autenticação',
         description: error.message,
         variant: 'destructive',
       });
