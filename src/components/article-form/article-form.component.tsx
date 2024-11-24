@@ -1,17 +1,20 @@
 'use client';
 
-import { categoriesMock } from '@/mocks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import rehypeSanitize from 'rehype-sanitize';
 import { z } from 'zod';
 
-import { ArticleModel } from '@/models';
+import { toast } from '@/hooks';
+
+import { ArticleModel, CategoryModel } from '@/models';
 
 import {
   ButtonComponent,
+  createArticleAction,
   FormComponent,
   FormControlComponent,
   FormFieldComponent,
@@ -26,6 +29,7 @@ import {
   SelectValueComponent,
   SwitchComponent,
   TextareaComponent,
+  updateArticleAction,
 } from '@/components';
 
 import { articleSchema } from './article.schema';
@@ -35,36 +39,63 @@ const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
 });
 
 interface ArticleFormComponentProps {
+  categories?: CategoryModel[];
   articleModel?: ArticleModel;
 }
 
 export function ArticleFormComponent({
+  categories,
   articleModel,
 }: ArticleFormComponentProps): JSX.Element {
+  const router = useRouter();
   const [content, setContent] = useState<string>('');
 
   const articlesForm = useForm<z.infer<typeof articleSchema>>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
-      teacherId: articleModel?.teacher?.id || '',
+      id: articleModel?.id || '',
       categoryId: articleModel?.category?.id || '',
       title: articleModel?.article?.title || '',
       summary: articleModel?.article?.summary || '',
       readingTime: articleModel?.article?.readingTime || 0,
       content: articleModel?.article?.content || '',
-      highlightImageUrl: articleModel?.article?.highlighImageUrl || '',
-      isPublished: articleModel?.article.isPublished ?? true,
+      highlightImageUrl: articleModel?.article?.highlightImageUrl || '',
+      isPublished: articleModel?.article?.isPublished ?? true,
     },
   });
 
-  // TODO: change to send to api
-  function handleSubmit(values: z.infer<typeof articleSchema>): void {
-    if (articleModel) {
-      console.log('Editar', values);
-    } else {
-      console.log('Adicionar', values);
+  const handleSubmit = async (
+    values: z.infer<typeof articleSchema>,
+  ): Promise<void> => {
+    const formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, String(value));
+    });
+
+    try {
+      const response = articleModel
+        ? await updateArticleAction(formData)
+        : await createArticleAction(formData);
+
+      if (response.success) {
+        toast({
+          title: 'Artigos',
+          description: response.message,
+          variant: 'success',
+        });
+
+        router.push('/admin/articles');
+      } else {
+        throw new Error(response.message || 'Erro inesperado.');
+      }
+    } catch (error: unknown) {
+      toast({
+        title: 'Artigos',
+        description: String(error) ?? 'Não foi possível criar o artigo.',
+        variant: 'destructive',
+      });
     }
-  }
+  };
 
   const { setValue } = articlesForm;
 
@@ -86,24 +117,23 @@ export function ArticleFormComponent({
       <form
         className="grid space-y-8"
         onSubmit={articlesForm.handleSubmit(handleSubmit)}
+        action={handleSubmit}
       >
-        <FormFieldComponent
-          control={articlesForm.control}
-          name="teacherId"
-          render={({ field }) => (
-            <FormItemComponent>
-              <FormLabelComponent>Id do docente</FormLabelComponent>
-              <FormControlComponent>
-                <InputComponent
-                  placeholder="Digite o id do docente"
-                  maxLength={50}
-                  {...field}
-                />
-              </FormControlComponent>
-              <FormMessageComponent />
-            </FormItemComponent>
-          )}
-        />
+        {articlesForm.getValues('id') && (
+          <FormFieldComponent
+            control={articlesForm.control}
+            name="id"
+            render={({ field }) => (
+              <FormItemComponent hidden>
+                <FormLabelComponent>Id</FormLabelComponent>
+                <FormControlComponent>
+                  <InputComponent placeholder="Id" {...field} />
+                </FormControlComponent>
+                <FormMessageComponent />
+              </FormItemComponent>
+            )}
+          />
+        )}
         <FormFieldComponent
           control={articlesForm.control}
           name="categoryId"
@@ -122,8 +152,8 @@ export function ArticleFormComponent({
                   </SelectTriggerComponent>
                 </FormControlComponent>
                 <SelectContentComponent>
-                  {categoriesMock
-                    .sort((a, b) => a.name.localeCompare(b.name))
+                  {categories
+                    ?.sort((a, b) => a.name.localeCompare(b.name))
                     .map((category) => (
                       <SelectItemComponent
                         key={category.id}
