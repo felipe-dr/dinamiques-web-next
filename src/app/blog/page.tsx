@@ -1,4 +1,4 @@
-import { getArticles, getCategories } from '@/http';
+import { getArticlesHttp, getCategoriesHttp } from '@/http';
 
 import { ArticleProvider, CategoryProvider } from '@/contexts/';
 
@@ -13,8 +13,8 @@ import {
 } from '@/components';
 
 export default async function BlogPage(): Promise<JSX.Element> {
-  const categories = await getCategories();
-  const articles = await getArticles();
+  const categories = await getCategoriesHttp();
+  const articles = await getArticlesHttp();
 
   return (
     <>

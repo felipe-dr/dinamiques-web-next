@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { signin } from '@/http';
+import { signinHttp } from '@/http';
 
 import { useAuthContext } from '@/contexts';
 
@@ -47,7 +47,7 @@ export function SigninDialogComponent(): JSX.Element {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate, isPending, error, isError } = useMutation({
-    mutationFn: signin,
+    mutationFn: signinHttp,
     onSuccess: (data: AuthModel) => {
       if (data.accessToken) {
         checkAuthentication();

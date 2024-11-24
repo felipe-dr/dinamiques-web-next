@@ -1,4 +1,4 @@
-import { getArticleBySlug, getCategories } from '@/http';
+import { getArticleBySlugHttp, getCategoriesHttp } from '@/http';
 
 import {
   AdminContentWrapperHeaderComponent,
@@ -14,8 +14,8 @@ interface ArticleEditAdminPageProps {
 export default async function ArticleEditAdminPage({
   params: { slug },
 }: ArticleEditAdminPageProps): Promise<JSX.Element> {
-  const categories = await getCategories();
-  const article = await getArticleBySlug({ slug });
+  const categories = await getCategoriesHttp();
+  const article = await getArticleBySlugHttp({ slug });
 
   const breadcrumbItems = [
     {

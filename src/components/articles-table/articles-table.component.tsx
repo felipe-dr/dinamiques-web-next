@@ -1,7 +1,7 @@
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-import { getArticles } from '@/http';
+import { getArticlesHttp } from '@/http';
 
 import { cn, formattedDateAuditFields } from '@/libs';
 
@@ -28,7 +28,7 @@ import {
 
 // TODO: add filter by terms
 export async function ArticlesTableComponent(): Promise<JSX.Element> {
-  const articles = await getArticles();
+  const articles = await getArticlesHttp();
 
   return (
     <TableComponent className="capitalize">

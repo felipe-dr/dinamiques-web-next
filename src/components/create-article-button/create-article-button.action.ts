@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
-import { createArticle } from '@/http';
+import { createArticleHttp } from '@/http';
 
 import { articleSchema } from '../article-form/article.schema';
 
@@ -34,7 +34,7 @@ export const createArticleAction = async (formData: FormData) => {
       };
     }
 
-    const response = await createArticle({
+    const response = await createArticleHttp({
       accessToken,
       article,
     });

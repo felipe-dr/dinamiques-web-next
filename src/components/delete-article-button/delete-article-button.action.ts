@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
-import { deleteArticle } from '@/http';
+import { deleteArticleHttp } from '@/http';
 
 export const deleteArticleAction = async (formData: FormData) => {
   try {
@@ -16,7 +16,7 @@ export const deleteArticleAction = async (formData: FormData) => {
       };
     }
 
-    const response = await deleteArticle({ id, accessToken });
+    const response = await deleteArticleHttp({ id, accessToken });
 
     if (response?.error) {
       return { success: false, message: response?.message };

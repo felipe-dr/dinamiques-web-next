@@ -1,9 +1,9 @@
 import { UserIcon } from '@heroicons/react/24/outline';
 
 import {
-  getArticleBySlug,
-  getArticles,
-  getRecommendedArticlesByCategory,
+  getArticleBySlugHttp,
+  getArticlesHttp,
+  getRecommendedArticlesByCategoryHttp,
 } from '@/http';
 
 import { ArticleModel } from '@/models';
@@ -26,7 +26,7 @@ import {
 } from '@/components';
 
 export async function generateStaticParams() {
-  const articles = await getArticles();
+  const articles = await getArticlesHttp();
 
   return articles?.map(({ article }) => ({
     slug: article.slug,
@@ -40,11 +40,11 @@ interface ArticlePageProps {
 export default async function ArticlePage({
   params: { slug },
 }: ArticlePageProps): Promise<JSX.Element> {
-  const { id, teacher, category, article } = (await getArticleBySlug({
+  const { id, teacher, category, article } = (await getArticleBySlugHttp({
     slug,
   })) as ArticleModel;
 
-  const recommendedArticles = await getRecommendedArticlesByCategory({
+  const recommendedArticles = await getRecommendedArticlesByCategoryHttp({
     categoryName: category.name,
     excludeId: id,
   });

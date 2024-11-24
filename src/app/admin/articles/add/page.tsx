@@ -1,4 +1,4 @@
-import { getCategories } from '@/http';
+import { getCategoriesHttp } from '@/http';
 
 import {
   AdminContentWrapperHeaderComponent,
@@ -8,7 +8,7 @@ import {
 } from '@/components';
 
 export default async function ArticleAddAdminPage(): Promise<JSX.Element> {
-  const categories = await getCategories();
+  const categories = await getCategoriesHttp();
 
   const breadcrumbItems = [
     {
