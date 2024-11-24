@@ -1,3 +1,5 @@
+import { getCategories } from '@/http';
+
 import {
   AdminContentWrapperHeaderComponent,
   AdminContentWrapperSectionComponent,
@@ -5,7 +7,9 @@ import {
   NavigationBreadcrumbComponent,
 } from '@/components';
 
-export default function ArticleAddAdminPage(): JSX.Element {
+export default async function ArticleAddAdminPage(): Promise<JSX.Element> {
+  const categories = await getCategories();
+
   const breadcrumbItems = [
     {
       label: 'artigos',
@@ -26,7 +30,7 @@ export default function ArticleAddAdminPage(): JSX.Element {
         />
       </AdminContentWrapperHeaderComponent>
       <AdminContentWrapperSectionComponent>
-        <ArticleFormComponent />
+        <ArticleFormComponent categories={categories} />
       </AdminContentWrapperSectionComponent>
     </>
   );
