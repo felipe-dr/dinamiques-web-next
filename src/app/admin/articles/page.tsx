@@ -1,6 +1,4 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { cn } from '@/libs';
 
@@ -8,14 +6,11 @@ import {
   AdminContentWrapperHeaderComponent,
   AdminContentWrapperSectionComponent,
   ArticlesTableComponent,
-  ButtonComponent,
   buttonVariants,
   NavigationBreadcrumbComponent,
 } from '@/components';
 
 export default function ArticlesAdminPage(): JSX.Element {
-  const router = useRouter();
-
   const breadcrumbItems = [
     {
       label: 'artigos',
@@ -30,15 +25,15 @@ export default function ArticlesAdminPage(): JSX.Element {
           className="m-0 mb-3 md:m-0 lg:m-0"
           breadcrumbItems={breadcrumbItems}
         />
-        <ButtonComponent
+        <Link
           className={cn(
             buttonVariants({ variant: 'admin', color: 'primary' }),
             'justify-self-end',
           )}
-          onClick={() => router.push('/admin/articles/add')}
+          href="/admin/articles/add"
         >
           Adicionar
-        </ButtonComponent>
+        </Link>
       </AdminContentWrapperHeaderComponent>
       <AdminContentWrapperSectionComponent>
         <ArticlesTableComponent />
