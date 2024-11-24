@@ -1,6 +1,4 @@
-import { articlesMock } from '@/mocks';
-
-import { ArticleModel } from '@/models';
+import { getArticleBySlug, getCategories } from '@/http';
 
 import {
   AdminContentWrapperHeaderComponent,
@@ -9,20 +7,15 @@ import {
   NavigationBreadcrumbComponent,
 } from '@/components';
 
-async function getArticle(id: string): Promise<ArticleModel | undefined> {
-  const article = articlesMock.find((articleMock) => articleMock.id === id);
-
-  return article;
-}
-
 interface ArticleEditAdminPageProps {
-  params: { id: string };
+  params: { slug: string };
 }
 
 export default async function ArticleEditAdminPage({
-  params: { id },
+  params: { slug },
 }: ArticleEditAdminPageProps): Promise<JSX.Element> {
-  const article = (await getArticle(id)) as ArticleModel;
+  const categories = await getCategories();
+  const article = await getArticleBySlug({ slug });
 
   const breadcrumbItems = [
     {
@@ -44,7 +37,7 @@ export default async function ArticleEditAdminPage({
         />
       </AdminContentWrapperHeaderComponent>
       <AdminContentWrapperSectionComponent>
-        <ArticleFormComponent articleModel={article} />
+        <ArticleFormComponent categories={categories} articleModel={article} />
       </AdminContentWrapperSectionComponent>
     </>
   );
