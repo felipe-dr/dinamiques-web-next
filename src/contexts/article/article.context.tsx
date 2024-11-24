@@ -41,7 +41,9 @@ export function ArticleProvider({
   children,
 }: ArticleProviderProps): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [articles, setArticles] = useState<ArticleModel[]>([]);
+  const [articles, setArticles] = useState<ArticleModel[] | []>(
+    fetchedArticles,
+  );
   const { activeCategory } = useCategoryContext();
 
   const handleArticlesFilter = useCallback(
@@ -91,12 +93,7 @@ export function ArticleProvider({
   );
 
   useEffect(() => {
-    const handleGetAllArticles = async () => {
-      const allArticles: ArticleModel[] = fetchedArticles;
-
-      setArticles(allArticles);
-    };
-    handleGetAllArticles();
+    setArticles(fetchedArticles);
   }, [fetchedArticles]);
 
   return (
