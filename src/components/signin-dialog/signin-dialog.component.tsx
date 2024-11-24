@@ -7,11 +7,11 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { signin } from '@/http';
+
 import { useAuthContext } from '@/contexts';
 
 import { useToast } from '@/hooks';
-
-import { signin } from '@/libs';
 
 import { AuthModel } from '@/models';
 
@@ -66,7 +66,7 @@ export function SigninDialogComponent(): JSX.Element {
   });
 
   function handleSubmit(values: z.infer<typeof signinDialogSchema>): void {
-    mutate(values);
+    mutate({ values });
   }
 
   function handleClose(): void {
