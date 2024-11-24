@@ -1,9 +1,7 @@
-'use client';
-
-import { articlesMock } from '@/mocks';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
+import { getArticles } from '@/http';
 
 import { cn, formattedDateAuditFields } from '@/libs';
 
@@ -12,6 +10,7 @@ import {
   AlertDialogComponent,
   AlertDialogTriggerComponent,
   buttonVariants,
+  DeleteArticleButtonComponent,
   PaginationComponent,
   PaginationContentComponent,
   PaginationItemComponent,
@@ -28,17 +27,8 @@ import {
 } from '@/components';
 
 // TODO: add filter by terms
-export function ArticlesTableComponent(): JSX.Element {
-  const router = useRouter();
-
-  const handleEditArticle = (articleId: string): void => {
-    router.push(`/admin/articles/${articleId}`);
-  };
-
-  // TODO: change to send to api
-  const handleRemoveArticle = (articleId: string): void => {
-    console.log(articleId);
-  };
+export async function ArticlesTableComponent(): Promise<JSX.Element> {
+  const articles = await getArticles();
 
   return (
     <TableComponent className="capitalize">
@@ -57,7 +47,7 @@ export function ArticlesTableComponent(): JSX.Element {
         </TableRowComponent>
       </TableHeaderComponent>
       <TableBodyComponent>
-        {articlesMock.map(({ id, category, teacher, article }) => (
+        {articles?.map(({ id, category, teacher, article }) => (
           <TableRowComponent key={id}>
             <TableCellComponent className="font-semibold">
               {id}
@@ -69,7 +59,7 @@ export function ArticlesTableComponent(): JSX.Element {
                 className={cn(
                   `${buttonVariants({ variant: 'link' })} font-normal text-base-white text-sm lg:text-sm p-0 lg:p-0`,
                 )}
-                href={`/admin/articles/${id}`}
+                href={`/admin/articles/${article.slug}`}
               >
                 {article.title}
               </Link>
@@ -93,12 +83,12 @@ export function ArticlesTableComponent(): JSX.Element {
             <TableCellComponent>{article.createdBy}</TableCellComponent>
             <TableCellComponent>{article.updatedBy}</TableCellComponent>
             <TableCellComponent className="text-right">
-              <button
-                className="p-2"
-                onClick={() => handleEditArticle(id.toString())}
+              <Link
+                className="inline-flex p-2"
+                href={`/admin/articles/${article.slug}`}
               >
                 <PencilIcon className="size-4 text-primary-5" />
-              </button>
+              </Link>
               <button className="p-2">
                 <AlertDialogComponent>
                   <AlertDialogTriggerComponent asChild>
@@ -106,9 +96,10 @@ export function ArticlesTableComponent(): JSX.Element {
                   </AlertDialogTriggerComponent>
                   <AlertDialogBoxComponent
                     title="Tem certeza que deseja excluir?"
-                    description={`O artigo ${article.title} será permanentemente excluído.`}
-                    handleToContinue={() => handleRemoveArticle(id.toString())}
-                  />
+                    description={`O artigo "${article.title}" será permanentemente excluído.`}
+                  >
+                    <DeleteArticleButtonComponent id={id} />
+                  </AlertDialogBoxComponent>
                 </AlertDialogComponent>
               </button>
             </TableCellComponent>
