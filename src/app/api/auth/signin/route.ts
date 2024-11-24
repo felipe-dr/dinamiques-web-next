@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { ApiResponseModel, AuthModel } from '@/models';
+import { ApiResponseWithDataModel, AuthModel } from '@/models';
 
 export async function POST(request: Request) {
   const API_URL = process.env.NEXT_PUBLIC_DINAMIQUES_API;
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       return response;
     }
 
-    const { data }: ApiResponseModel<AuthModel> = await response.json();
+    const { data }: ApiResponseWithDataModel<AuthModel> = await response.json();
     const nextResponse = NextResponse.json({
       ...data,
     });
