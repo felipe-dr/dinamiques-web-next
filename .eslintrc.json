@@ -39,6 +39,7 @@
         "groups": [
           "module",
           "/@/styles/",
+          "/@/http/",
           "/@/contexts/",
           "/@/hooks/",
           "/@/libs/",
