@@ -1,6 +1,6 @@
-import { ArticleProvider, CategoryProvider } from '@/contexts/';
+import { getArticles, getCategories } from '@/http';
 
-import { getArticles, getCategories } from '@/libs';
+import { ArticleProvider, CategoryProvider } from '@/contexts/';
 
 import {
   ArticlesSectionComponent,
