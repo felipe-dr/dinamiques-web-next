@@ -39,12 +39,12 @@ export function ArticleCardComponent({
         as="article"
       >
         <div
-          className={`relative flex h-[13.75rem] overflow-hidden ${!article.highlighImageUrl && 'bg-primary-4'}`}
+          className={`relative flex h-[13.75rem] overflow-hidden ${!article.highlightImageUrl && 'bg-primary-4'}`}
         >
-          {article.highlighImageUrl && (
+          {article.highlightImageUrl && (
             <Image
               className="rounded-t-md object-cover duration-500 ease-in-out group-hover:scale-110 group-hover:opacity-70"
-              src={article.highlighImageUrl}
+              src={article.highlightImageUrl}
               width={440}
               height={220}
               alt={article.title}
