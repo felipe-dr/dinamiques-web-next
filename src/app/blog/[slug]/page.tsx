@@ -4,7 +4,7 @@ import {
   getArticleBySlug,
   getArticles,
   getRecommendedArticlesByCategory,
-} from '@/libs';
+} from '@/http';
 
 import { ArticleModel } from '@/models';
 
@@ -40,17 +40,17 @@ interface ArticlePageProps {
 export default async function ArticlePage({
   params: { slug },
 }: ArticlePageProps): Promise<JSX.Element> {
-  const { id, teacher, category, article } = (await getArticleBySlug(
+  const { id, teacher, category, article } = (await getArticleBySlug({
     slug,
-  )) as ArticleModel;
+  })) as ArticleModel;
 
-  const recommendedArticles = await getRecommendedArticlesByCategory(
-    category.name,
-    id,
-  );
+  const recommendedArticles = await getRecommendedArticlesByCategory({
+    categoryName: category.name,
+    excludeId: id,
+  });
 
   const backgroundImage = {
-    path: article.highlighImageUrl,
+    path: article.highlightImageUrl,
     alt: article.title,
     width: 1600,
     height: 640,
