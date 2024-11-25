@@ -1,6 +1,4 @@
-import { categoriesMock } from '@/mocks';
-
-import { CategoryModel } from '@/models';
+import { getCategoryByIdHttp } from '@/http';
 
 import {
   AdminContentWrapperHeaderComponent,
@@ -9,14 +7,6 @@ import {
   NavigationBreadcrumbComponent,
 } from '@/components';
 
-async function getCategory(id: string): Promise<CategoryModel | undefined> {
-  const category = categoriesMock.find(
-    (categoryMock) => categoryMock.id === id,
-  );
-
-  return category;
-}
-
 interface CategoryEditAdminPageProps {
   params: { id: string };
 }
@@ -24,7 +14,7 @@ interface CategoryEditAdminPageProps {
 export default async function CategoryEditAdminPage({
   params: { id },
 }: CategoryEditAdminPageProps): Promise<JSX.Element> {
-  const category = (await getCategory(id)) as CategoryModel;
+  const category = await getCategoryByIdHttp({ id });
 
   const breadcrumbItems = [
     {
