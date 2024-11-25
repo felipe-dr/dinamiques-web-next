@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useMemo, useState } from 'react';
 
+import { handleSortByTerm } from '@/utils';
+
 import { CategoryModel } from '@/models';
 
 interface CategoryContextData {
@@ -74,7 +76,7 @@ export function useCategoryContext(): CategoryContextReturn {
   const handleCategoriesAlphabetically = (
     categories: CategoryModel[],
   ): CategoryModel[] => {
-    return categories.sort((a, b) => a.name.localeCompare(b.name));
+    return handleSortByTerm(categories!, 'name');
   };
 
   return {
