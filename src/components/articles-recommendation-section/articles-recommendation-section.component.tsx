@@ -1,9 +1,6 @@
 import { ComponentProps } from 'react';
 
-import {
-  handleRandomSelection,
-  handleSortingDescendingByPublishedLastDate,
-} from '@/utils';
+import { handleRandomSelection, handleSortingDescendingByDate } from '@/utils';
 
 import { ArticleModel } from '@/models';
 
@@ -21,8 +18,9 @@ interface ArticlesRecommendationSectionComponentProps
 export function ArticlesRecommendationSectionComponent({
   articles,
 }: ArticlesRecommendationSectionComponentProps): JSX.Element {
-  const recommendedArticles = handleSortingDescendingByPublishedLastDate(
+  const recommendedArticles = handleSortingDescendingByDate(
     handleRandomSelection(articles).slice(0, 3),
+    ({ article }) => article.publishedLastDate,
   );
 
   return (
