@@ -1,17 +1,20 @@
-'use client';
-
-import { categoriesMock } from '@/mocks';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
+import { getCategoriesHttp } from '@/http';
 
 import { cn, formattedDateAuditFields } from '@/libs';
+
+import { handleSortingDescendingByDate } from '@/utils';
+
+import { CategoryModel } from '@/models';
 
 import {
   AlertDialogBoxComponent,
   AlertDialogComponent,
   AlertDialogTriggerComponent,
   buttonVariants,
+  DeleteCategoryButtonComponent,
   PaginationComponent,
   PaginationContentComponent,
   PaginationItemComponent,
@@ -28,17 +31,13 @@ import {
 } from '@/components';
 
 // TODO: add filter by terms
-export function CategoriesTableComponent(): JSX.Element {
-  const router = useRouter();
-
-  const handleEditCategory = (categoryId: string): void => {
-    router.push(`/admin/categories/${categoryId}`);
-  };
-
-  // TODO: change to send to api
-  const handleRemoveCategory = (categoryId: string): void => {
-    console.log(categoryId);
-  };
+export async function CategoriesTableComponent(): Promise<JSX.Element> {
+  const categories = await getCategoriesHttp();
+  const categoriesSortingDescendingByCreatedDate =
+    handleSortingDescendingByDate(
+      categories!,
+      (category: CategoryModel) => category.createdAt,
+    );
 
   return (
     <TableComponent className="capitalize">
@@ -55,7 +54,7 @@ export function CategoriesTableComponent(): JSX.Element {
         </TableRowComponent>
       </TableHeaderComponent>
       <TableBodyComponent>
-        {categoriesMock.map((category) => (
+        {categoriesSortingDescendingByCreatedDate?.map((category) => (
           <TableRowComponent key={category.id}>
             <TableCellComponent className="font-semibold">
               {category.id}
@@ -85,12 +84,12 @@ export function CategoriesTableComponent(): JSX.Element {
             <TableCellComponent>{category.createdBy}</TableCellComponent>
             <TableCellComponent>{category.updatedBy}</TableCellComponent>
             <TableCellComponent className="text-right">
-              <button
-                className="p-2"
-                onClick={() => handleEditCategory(category.id)}
+              <Link
+                className="inline-flex p-2"
+                href={`/admin/categories/${category.id}`}
               >
                 <PencilIcon className="size-4 text-primary-5" />
-              </button>
+              </Link>
               <button className="p-2">
                 <AlertDialogComponent>
                   <AlertDialogTriggerComponent asChild>
@@ -98,9 +97,10 @@ export function CategoriesTableComponent(): JSX.Element {
                   </AlertDialogTriggerComponent>
                   <AlertDialogBoxComponent
                     title="Tem certeza que deseja excluir?"
-                    description={`A categoria ${category.name} será permanentemente excluída.`}
-                    handleToContinue={() => handleRemoveCategory(category.id)}
-                  />
+                    description={`A categoria "${category.name}" será permanentemente excluída.`}
+                  >
+                    <DeleteCategoryButtonComponent id={category.id} />
+                  </AlertDialogBoxComponent>
                 </AlertDialogComponent>
               </button>
             </TableCellComponent>
