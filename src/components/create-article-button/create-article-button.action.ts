@@ -7,7 +7,7 @@ import { createArticleHttp } from '@/http';
 
 import { articleSchema } from '../article-form/article.schema';
 
-export const createArticleAction = async (formData: FormData) => {
+export async function createArticleAction(formData: FormData) {
   const formDataObject = Object.fromEntries(formData.entries());
   const articleSchemaValidation = articleSchema.safeParse(formDataObject);
   const article = articleSchemaValidation.data!;
@@ -49,4 +49,4 @@ export const createArticleAction = async (formData: FormData) => {
   } catch (error) {
     return { success: false, message: null, error };
   }
-};
+}
