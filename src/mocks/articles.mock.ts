@@ -24,7 +24,7 @@ export const articlesMock = [
         <img src="https://picsum.photos/seed/celula/600/480" alt="Estrutura Celular" />
         <p>O núcleo contém o material genético, enquanto as mitocôndrias são responsáveis pela produção de energia.</p>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/1600/640',
+      highlightImageUrl: 'https://picsum.photos/seed/biologia/1600/640',
       publishedLastDate: new Date('2023-10-30T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-30T14:30:00Z'),
@@ -84,7 +84,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
 
 2. Em alguns casos, o verbo concorda com o sujeito mais próximo, especialmente quando o sujeito é composto por substantivos de gêneros diferentes.
       `,
-      highlighImageUrl: '',
+      highlightImageUrl: '',
       publishedLastDate: new Date('2024-02-13T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
@@ -112,7 +112,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         </ul>
         <img src="https://picsum.photos/seed/circulo/600/480" alt="Círculo" />
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/matematica/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/matematica/600/480',
       publishedLastDate: new Date('2023-10-28T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-28T14:30:00Z'),
@@ -141,7 +141,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Proclamação da independência por Dom Pedro I.</li>
         </ol>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/historia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/historia/600/480',
       publishedLastDate: new Date('2023-10-27T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-27T14:30:00Z'),
@@ -170,7 +170,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Produção de glicose e oxigênio.</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/biologia/600/480',
       publishedLastDate: new Date('2023-10-26T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-26T14:30:00Z'),
@@ -199,7 +199,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Adaptação ao meio ambiente</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/biologia/600/480',
       publishedLastDate: new Date('2024-02-12T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-30T14:30:00Z'),
@@ -229,7 +229,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
         </ol>
         <p>Exemplo de metáfora: "A vida é uma viagem."</p>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/portugues/600/480',
       publishedLastDate: new Date('2021-08-10T11:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
@@ -257,7 +257,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li><strong>Moda</strong>: valor que mais se repete.</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/matematica/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/matematica/600/480',
       publishedLastDate: new Date('2023-10-28T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-28T14:30:00Z'),
@@ -285,7 +285,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Segunda Guerra (1939-1945): Conflito global que resultou em grandes perdas humanas e mudanças políticas.</li>
         </ol>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/historia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/historia/600/480',
       publishedLastDate: new Date('2023-10-27T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-27T14:30:00Z'),
@@ -314,7 +314,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Mudanças Climáticas</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/biologia/600/480',
       publishedLastDate: new Date('2023-10-26T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-26T14:30:00Z'),
@@ -344,7 +344,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Consumidores secundários (carnívoros)</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/biologia/600/480',
       publishedLastDate: new Date('2023-10-30T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-30T14:30:00Z'),
@@ -371,7 +371,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Em locuções: "À medida que..."</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/portugues/600/480',
       publishedLastDate: new Date('2024-04-06T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2024-04-06T14:30:00Z'),
@@ -400,7 +400,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>x = -3/2</li>
         </ol>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/matematica/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/matematica/600/480',
       publishedLastDate: new Date('2023-10-28T14:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-28T14:30:00Z'),
@@ -428,7 +428,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Declaração dos Direitos do Homem e do Cidadão.</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/historia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/historia/600/480',
       publishedLastDate: new Date('2024-06-11T10:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-27T14:30:00Z'),
@@ -457,7 +457,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Precipitação</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/biologia/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/biologia/600/480',
       publishedLastDate: new Date('2024-09-08T14:35:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-26T14:30:00Z'),
@@ -486,7 +486,7 @@ Quando o sujeito está no **plural**, o verbo deve ser conjugado no **plural**.
           <li>Conto</li>
         </ul>
       `,
-      highlighImageUrl: 'https://picsum.photos/seed/portugues/600/480',
+      highlightImageUrl: 'https://picsum.photos/seed/portugues/600/480',
       publishedLastDate: new Date('2020-12-24T15:30:00Z'),
       isPublished: true,
       createdAt: new Date('2023-10-29T14:30:00Z'),
