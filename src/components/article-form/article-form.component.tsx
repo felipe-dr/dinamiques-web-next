@@ -10,6 +10,8 @@ import { z } from 'zod';
 
 import { toast } from '@/hooks';
 
+import { handleSortByTerm } from '@/utils';
+
 import { ArticleModel, CategoryModel } from '@/models';
 
 import {
@@ -50,6 +52,11 @@ export function ArticleFormComponent({
   const router = useRouter();
   const [content, setContent] = useState<string>('');
 
+  const categoriesSortedAlphabetically = handleSortByTerm(
+    categories!,
+    'name',
+  ).filter((category) => category.isActive);
+
   const articlesForm = useForm<z.infer<typeof articleSchema>>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
@@ -68,6 +75,7 @@ export function ArticleFormComponent({
     values: z.infer<typeof articleSchema>,
   ): Promise<void> => {
     const formData = new FormData();
+
     Object.entries(values).forEach(([key, value]) => {
       formData.append(key, String(value));
     });
@@ -152,16 +160,11 @@ export function ArticleFormComponent({
                   </SelectTriggerComponent>
                 </FormControlComponent>
                 <SelectContentComponent>
-                  {categories
-                    ?.sort((a, b) => a.name.localeCompare(b.name))
-                    .map((category) => (
-                      <SelectItemComponent
-                        key={category.id}
-                        value={category.id}
-                      >
-                        {category.name}
-                      </SelectItemComponent>
-                    ))}
+                  {categoriesSortedAlphabetically?.map((category) => (
+                    <SelectItemComponent key={category.id} value={category.id}>
+                      {category.name}
+                    </SelectItemComponent>
+                  ))}
                 </SelectContentComponent>
               </SelectComponent>
               <FormMessageComponent />
