@@ -11,7 +11,7 @@ import {
 
 import { allActiveCategories, useCategoryContext } from '@/contexts';
 
-import { handleSortingDescendingByPublishedLastDate } from '@/utils';
+import { handleSortingDescendingByDate } from '@/utils';
 
 import { ArticleModel, CategoryModel } from '@/models';
 
@@ -69,7 +69,10 @@ export function ArticleProvider({
         );
       }
 
-      return handleSortingDescendingByPublishedLastDate(filteredArticles);
+      return handleSortingDescendingByDate(
+        filteredArticles,
+        ({ article }) => article.publishedLastDate,
+      );
     },
     [],
   );
