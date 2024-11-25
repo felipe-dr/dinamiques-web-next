@@ -41,7 +41,7 @@ export async function updateArticleHttp({
     await response.json();
 
   if (!response.ok) {
-    throw {
+    return {
       statusCode,
       error,
       message,

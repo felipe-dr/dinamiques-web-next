@@ -36,7 +36,7 @@ export async function createArticleHttp({
     await response.json();
 
   if (!response.ok) {
-    throw {
+    return {
       statusCode,
       error,
       message,
