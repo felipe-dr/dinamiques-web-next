@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { toast } from '@/hooks';
@@ -34,7 +33,7 @@ export function DeleteArticleButtonComponent({
     } catch (error) {
       toast({
         title: 'Artigos',
-        description: 'Não foi possível remover o artigo.',
+        description: String(error) ?? 'Não foi possível remover o artigo.',
         variant: 'destructive',
       });
     }
