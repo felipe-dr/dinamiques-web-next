@@ -21,13 +21,15 @@ export function ArticlesSectionComponent(): JSX.Element {
     <SectionBoxComponent className="grid" tag="section">
       <div className="grid items-stretch justify-items-center gap-9 sm:grid-cols-articles-section">
         {filteredArticles.length > 0 ? (
-          filteredArticles.map((article, index) => (
-            <ArticleCardComponent
-              className={`${index % 2 === 0 && filteredArticles.length !== 1 ? 'md:justify-self-end' : 'md:justify-self-start'}`}
-              key={article.id}
-              article={article}
-            />
-          ))
+          filteredArticles
+            .filter(({ article }) => article.isPublished)
+            .map((article, index) => (
+              <ArticleCardComponent
+                className={`${index % 2 === 0 && filteredArticles.length !== 1 ? 'md:justify-self-end' : 'md:justify-self-start'}`}
+                key={article.id}
+                article={article}
+              />
+            ))
         ) : (
           <p>Não há artigos disponíveis no momento.</p>
         )}
