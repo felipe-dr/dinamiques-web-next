@@ -3,7 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import Link from 'next/link';
 import * as React from 'react';
 
-import { cn } from '@/libs';
+import { cn } from '@/shared/libs';
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,

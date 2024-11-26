@@ -4,7 +4,7 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
-import { cn } from '@/libs';
+import { cn } from '@/shared/libs';
 
 const labelVariants = cva(
   'text-md font-semibold leading-none text-base-3 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
