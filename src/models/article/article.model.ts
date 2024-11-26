@@ -11,9 +11,9 @@ export interface ArticleModel {
     summary: string;
     readingTime: number;
     content: string;
-    highlighImageUrl: string;
+    highlightImageUrl: string;
     publishedLastDate: Date;
-    isPublished: true;
+    isPublished: boolean;
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;

@@ -11,7 +11,7 @@ import {
 
 import { allActiveCategories, useCategoryContext } from '@/contexts';
 
-import { handleSortingDescendingByPublishedLastDate } from '@/utils';
+import { handleSortingDescendingByDate } from '@/utils';
 
 import { ArticleModel, CategoryModel } from '@/models';
 
@@ -41,7 +41,9 @@ export function ArticleProvider({
   children,
 }: ArticleProviderProps): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [articles, setArticles] = useState<ArticleModel[]>([]);
+  const [articles, setArticles] = useState<ArticleModel[] | []>(
+    fetchedArticles,
+  );
   const { activeCategory } = useCategoryContext();
 
   const handleArticlesFilter = useCallback(
@@ -67,7 +69,10 @@ export function ArticleProvider({
         );
       }
 
-      return handleSortingDescendingByPublishedLastDate(filteredArticles);
+      return handleSortingDescendingByDate(
+        filteredArticles,
+        ({ article }) => article.publishedLastDate,
+      );
     },
     [],
   );
@@ -91,12 +96,7 @@ export function ArticleProvider({
   );
 
   useEffect(() => {
-    const handleGetAllArticles = async () => {
-      const allArticles: ArticleModel[] = fetchedArticles;
-
-      setArticles(allArticles);
-    };
-    handleGetAllArticles();
+    setArticles(fetchedArticles);
   }, [fetchedArticles]);
 
   return (

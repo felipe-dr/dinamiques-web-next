@@ -1,7 +1,6 @@
 import { ComponentProps } from 'react';
 
 import {
-  AlertDialogActionComponent,
   AlertDialogCancelComponent,
   AlertDialogContentComponent,
   AlertDialogDescriptionComponent,
@@ -13,13 +12,13 @@ import {
 interface AlertDialogBoxComponentProps extends ComponentProps<'div'> {
   title: string;
   description: string;
-  handleToContinue: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  children: React.ReactNode;
 }
 
 export function AlertDialogBoxComponent({
   title,
   description,
-  handleToContinue,
+  children,
 }: AlertDialogBoxComponentProps): JSX.Element {
   return (
     <AlertDialogContentComponent>
@@ -31,9 +30,7 @@ export function AlertDialogBoxComponent({
       </AlertDialogHeaderComponent>
       <AlertDialogFooterComponent>
         <AlertDialogCancelComponent>Cancelar</AlertDialogCancelComponent>
-        <AlertDialogActionComponent onClick={handleToContinue}>
-          Continuar
-        </AlertDialogActionComponent>
+        {children}
       </AlertDialogFooterComponent>
     </AlertDialogContentComponent>
   );

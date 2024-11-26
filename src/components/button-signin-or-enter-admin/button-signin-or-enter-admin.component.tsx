@@ -16,7 +16,7 @@ export async function ButtonSigninOrEnterAdminComponent(): Promise<JSX.Element> 
       className={cn(buttonVariants({ color: 'primary' }), 'w-full')}
       href="/admin"
     >
-      Admin
+      Entrar
     </Link>
   ) : (
     <SigninDialogComponent />

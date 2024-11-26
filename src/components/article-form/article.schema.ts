@@ -3,9 +3,7 @@ import { z } from 'zod';
 import { URL_PATTERN } from '@/patterns';
 
 export const articleSchema = z.object({
-  teacherId: z.string().min(1, {
-    message: 'Id do docente é obrigatório.',
-  }),
+  id: z.string().optional(),
   categoryId: z.string().min(1, {
     message: 'Categoria é obrigatória.',
   }),
@@ -43,11 +41,34 @@ export const articleSchema = z.object({
     .refine(
       (value) => {
         if (!value) return true;
+
         return URL_PATTERN.test(value);
       },
       {
         message: 'URL da imagem de destaque deve ser uma URL válida.',
       },
     ),
-  isPublished: z.boolean(),
+  isPublished: z
+    .union([z.boolean(), z.literal('true'), z.literal('false')])
+    .optional()
+    .refine(
+      (value) => {
+        if (typeof value === 'string') {
+          return value === 'true' || value === 'false';
+        }
+
+        return true;
+      },
+      {
+        message:
+          'isPublished deve ser uma string "true" ou "false", ou um booleano.',
+      },
+    )
+    .transform((value) => {
+      if (typeof value === 'string') {
+        return value === 'true';
+      }
+
+      return value;
+    }),
 });
