@@ -2,15 +2,15 @@ import { DocumentTextIcon, TagIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 import {
-  AdminContentWrapperHeaderComponent,
-  AdminContentWrapperSectionComponent,
+  ContentWrapperHeaderComponent,
+  ContentWrapperSectionComponent,
 } from '@/components';
 
 export default function AdminPage(): JSX.Element {
   return (
     <>
-      <AdminContentWrapperHeaderComponent title="Olá, seja bem vindo!"></AdminContentWrapperHeaderComponent>
-      <AdminContentWrapperSectionComponent>
+      <ContentWrapperHeaderComponent title="Olá, seja bem vindo!"></ContentWrapperHeaderComponent>
+      <ContentWrapperSectionComponent>
         <ul className="grid items-center gap-3">
           <li>
             <Link
@@ -31,7 +31,7 @@ export default function AdminPage(): JSX.Element {
             </Link>
           </li>
         </ul>
-      </AdminContentWrapperSectionComponent>
+      </ContentWrapperSectionComponent>
     </>
   );
 }

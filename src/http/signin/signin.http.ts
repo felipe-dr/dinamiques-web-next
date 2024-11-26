@@ -1,4 +1,4 @@
-import { ApiResponseWithDataModel, AuthModel } from '@/models';
+import { ApiResponseWithDataModel, AuthModel } from '@/shared/models';
 
 interface SigninHttpRequest {
   values: {

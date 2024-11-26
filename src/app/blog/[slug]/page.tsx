@@ -6,7 +6,7 @@ import {
   getRecommendedArticlesByCategoryHttp,
 } from '@/http';
 
-import { ArticleModel } from '@/models';
+import { ArticleModel } from '@/shared/models';
 
 import {
   ArticleAuthorNameComponent,

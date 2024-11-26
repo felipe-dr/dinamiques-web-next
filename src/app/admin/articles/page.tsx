@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import { cn } from '@/libs';
+import { cn } from '@/shared/libs';
 
 import {
-  AdminContentWrapperHeaderComponent,
-  AdminContentWrapperSectionComponent,
+  ContentWrapperHeaderComponent,
+  ContentWrapperSectionComponent,
   ArticlesTableComponent,
   buttonVariants,
   NavigationBreadcrumbComponent,
@@ -20,7 +20,7 @@ export default function ArticlesAdminPage(): JSX.Element {
 
   return (
     <>
-      <AdminContentWrapperHeaderComponent title="artigos">
+      <ContentWrapperHeaderComponent title="artigos">
         <NavigationBreadcrumbComponent
           className="m-0 mb-3 md:m-0 lg:m-0"
           breadcrumbItems={breadcrumbItems}
@@ -34,10 +34,10 @@ export default function ArticlesAdminPage(): JSX.Element {
         >
           Adicionar
         </Link>
-      </AdminContentWrapperHeaderComponent>
-      <AdminContentWrapperSectionComponent>
+      </ContentWrapperHeaderComponent>
+      <ContentWrapperSectionComponent>
         <ArticlesTableComponent />
-      </AdminContentWrapperSectionComponent>
+      </ContentWrapperSectionComponent>
     </>
   );
 }

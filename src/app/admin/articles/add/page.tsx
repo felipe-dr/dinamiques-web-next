@@ -1,8 +1,8 @@
 import { getCategoriesHttp } from '@/http';
 
 import {
-  AdminContentWrapperHeaderComponent,
-  AdminContentWrapperSectionComponent,
+  ContentWrapperHeaderComponent,
+  ContentWrapperSectionComponent,
   ArticleFormComponent,
   NavigationBreadcrumbComponent,
 } from '@/components';
@@ -23,15 +23,15 @@ export default async function ArticleAddAdminPage(): Promise<JSX.Element> {
 
   return (
     <>
-      <AdminContentWrapperHeaderComponent title="artigos">
+      <ContentWrapperHeaderComponent title="artigos">
         <NavigationBreadcrumbComponent
           className="m-0 md:m-0 lg:m-0"
           breadcrumbItems={breadcrumbItems}
         />
-      </AdminContentWrapperHeaderComponent>
-      <AdminContentWrapperSectionComponent>
+      </ContentWrapperHeaderComponent>
+      <ContentWrapperSectionComponent>
         <ArticleFormComponent categories={categories} />
-      </AdminContentWrapperSectionComponent>
+      </ContentWrapperSectionComponent>
     </>
   );
 }
