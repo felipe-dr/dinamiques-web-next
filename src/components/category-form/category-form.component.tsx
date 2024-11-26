@@ -1,13 +1,17 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import { toast } from '@/hooks';
 
 import { CategoryModel } from '@/models';
 
 import {
   ButtonComponent,
+  createCategoryAction,
   FormComponent,
   FormControlComponent,
   FormDescriptionComponent,
@@ -17,6 +21,7 @@ import {
   FormMessageComponent,
   InputComponent,
   SwitchComponent,
+  updateCategoryAction,
 } from '@/components';
 
 import { categorySchema } from './category.schema';
@@ -28,30 +33,73 @@ interface CategoryFormComponentProps {
 export function CategoryFormComponent({
   category,
 }: CategoryFormComponentProps): JSX.Element {
+  const router = useRouter();
   const categoriesForm = useForm<z.infer<typeof categorySchema>>({
     resolver: zodResolver(categorySchema),
     defaultValues: {
+      id: category?.id || '',
       name: category?.name || '',
       color: category?.color || '',
-      isActive: category?.isActive === false ? false : true,
+      isActive: category?.isActive ?? true,
     },
   });
 
-  // TODO: change to send to api
-  function handleSubmit(values: z.infer<typeof categorySchema>): void {
-    if (category) {
-      console.log('Editar', values);
-    } else {
-      console.log('Adicionar', values);
+  const handleSubmit = async (
+    values: z.infer<typeof categorySchema>,
+  ): Promise<void> => {
+    const formData = new FormData();
+
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, String(value));
+    });
+
+    try {
+      const response = category
+        ? await updateCategoryAction(formData)
+        : await createCategoryAction(formData);
+
+      if (response.success) {
+        toast({
+          title: 'Categorias',
+          description: response.message,
+          variant: 'success',
+        });
+
+        router.push('/admin/categories');
+      } else {
+        throw new Error(response.message || 'Erro inesperado.');
+      }
+    } catch (error: unknown) {
+      toast({
+        title: 'Categorias',
+        description: String(error) ?? 'Não foi possível criar a categoria.',
+        variant: 'destructive',
+      });
     }
-  }
+  };
 
   return (
     <FormComponent {...categoriesForm}>
       <form
         className="grid space-y-8"
         onSubmit={categoriesForm.handleSubmit(handleSubmit)}
+        action={handleSubmit}
       >
+        {categoriesForm.getValues('id') && (
+          <FormFieldComponent
+            control={categoriesForm.control}
+            name="id"
+            render={({ field }) => (
+              <FormItemComponent hidden>
+                <FormLabelComponent>Id</FormLabelComponent>
+                <FormControlComponent>
+                  <InputComponent placeholder="Id" {...field} />
+                </FormControlComponent>
+                <FormMessageComponent />
+              </FormItemComponent>
+            )}
+          />
+        )}
         <FormFieldComponent
           control={categoriesForm.control}
           name="name"
