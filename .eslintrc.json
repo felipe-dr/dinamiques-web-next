@@ -38,15 +38,13 @@
         "newlinesBetween": "always",
         "groups": [
           "module",
-          "/@/styles/",
+          "/@/app/",
+          "/@/actions/",
           "/@/http/",
-          "/@/contexts/",
-          "/@/hooks/",
-          "/@/libs/",
-          "/@/patterns/",
-          "/@/utils/",
-          "/@/models/",
+          "/@/data/",
+          "/@/shared/",
           "/@/components/",
+          "/@/mocks/",
           ["parent", "sibling", "index"]
         ],
         "alphabetize": {
