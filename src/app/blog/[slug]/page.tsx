@@ -1,10 +1,13 @@
 import { UserIcon } from '@heroicons/react/24/outline';
+import { Metadata } from 'next';
 
 import {
   getArticleBySlugHttp,
   getArticlesHttp,
   getRecommendedArticlesByCategoryHttp,
 } from '@/http';
+
+import { ArticleModel } from '@/shared/models';
 
 import {
   ArticleAuthorNameComponent,
@@ -31,6 +34,22 @@ export async function generateStaticParams() {
       slug: article.slug,
     })) ?? []
   );
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: ArticlePageProps): Promise<Metadata | null> {
+  const response = await getArticleBySlugHttp({ slug });
+  const { article } = response as ArticleModel;
+
+  if (article) {
+    return {
+      title: article.title,
+      description: article.summary,
+    };
+  }
+
+  return null;
 }
 
 interface ArticlePageProps {
@@ -73,15 +92,26 @@ export default async function ArticlePage({
 
   return (
     <>
-      <HeroComponent backgroundImage={backgroundImage}>
+      <HeroComponent
+        backgroundImage={backgroundImage}
+        itemScope
+        itemType="https://schema.org/Article"
+      >
         <HeroHeaderComponent>
           <NavigationBreadcrumbComponent breadcrumbItems={breadcrumbItems} />
-          <TitleComponent className="text-base-white md:ms-8 lg:ms-11" tag="h1">
+          <TitleComponent
+            className="text-base-white md:ms-8 lg:ms-11"
+            tag="h1"
+            itemProp="headline"
+          >
             {article.title}
           </TitleComponent>
         </HeroHeaderComponent>
         <HeroContentComponent className="mb-11 mt-6">
-          <p className="max-w-[36.25rem] ps-4 text-md md:ms-8 lg:ms-11">
+          <p
+            className="max-w-[36.25rem] ps-4 text-md md:ms-8 lg:ms-11"
+            itemProp="description"
+          >
             {article?.summary}
           </p>
         </HeroContentComponent>
@@ -102,13 +132,20 @@ export default async function ArticlePage({
                 className="text-base-white"
                 tag="h3"
                 authorName={teacher.name}
+                itemProp="author"
+                itemScope
+                itemType="https://schema.org/Person"
               />
               <ArticlePublishedLastDateComponent
                 className="text-base-5"
                 publishedLastDate={article.publishedLastDate}
+                itemProp="datePublished"
               />
             </div>
-            <ArticleReadingTimeComponent readingTime={article.readingTime} />
+            <ArticleReadingTimeComponent
+              readingTime={article.readingTime}
+              itemProp="timeRequired"
+            />
           </div>
         </HeroFooterComponent>
       </HeroComponent>
