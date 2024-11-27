@@ -28,9 +28,11 @@ import {
 export async function generateStaticParams() {
   const articles = await getArticlesHttp();
 
-  return articles?.map(({ article }) => ({
-    slug: article.slug,
-  }));
+  return (
+    articles?.map(({ article }) => ({
+      slug: article.slug,
+    })) ?? []
+  );
 }
 
 interface ArticlePageProps {
