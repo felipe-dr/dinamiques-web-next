@@ -6,8 +6,6 @@ import {
   getRecommendedArticlesByCategoryHttp,
 } from '@/http';
 
-import { ArticleModel } from '@/shared/models';
-
 import {
   ArticleAuthorNameComponent,
   ArticlePublishedLastDateComponent,
@@ -42,10 +40,13 @@ interface ArticlePageProps {
 export default async function ArticlePage({
   params: { slug },
 }: ArticlePageProps): Promise<JSX.Element> {
-  const { id, teacher, category, article } = (await getArticleBySlugHttp({
-    slug,
-  })) as ArticleModel;
+  const response = await getArticleBySlugHttp({ slug });
 
+  if (!response) {
+    return <p>Artigo não encontrado.</p>;
+  }
+
+  const { id, teacher, category, article } = response;
   const recommendedArticles = await getRecommendedArticlesByCategoryHttp({
     categoryName: category.name,
     excludeId: id,
