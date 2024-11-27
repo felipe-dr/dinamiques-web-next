@@ -1,4 +1,4 @@
-import { ApiResponseModel } from '@/models';
+import { ApiResponseModel } from '@/shared/models';
 
 import { API_URL } from '../api-client/api-client.http';
 

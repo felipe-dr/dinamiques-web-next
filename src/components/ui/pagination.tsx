@@ -2,7 +2,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import * as React from 'react';
 
-import { cn } from '@/libs';
+import { cn } from '@/shared/libs';
 
 import { ButtonProps, buttonVariants } from '@/components/ui/button';
 
@@ -51,7 +51,8 @@ const PaginationLink = ({
     aria-current={isActive ? 'page' : undefined}
     className={cn(
       buttonVariants({
-        variant: isActive ? 'outline' : 'ghost',
+        // variant: isActive ? 'outline' : 'ghost',
+        variant: isActive ? 'default' : 'ghost',
         size,
       }),
       className,

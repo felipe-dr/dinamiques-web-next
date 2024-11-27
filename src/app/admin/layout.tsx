@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 import {
-  AdminSidebarComponent,
   SidebarProvider,
+  SidebarRootComponent,
   SidebarTriggerComponent,
 } from '@/components';
 
@@ -18,7 +18,7 @@ export default function AdminLayout({
 }>): JSX.Element {
   return (
     <SidebarProvider>
-      <AdminSidebarComponent />
+      <SidebarRootComponent />
       <main className="w-full">
         <SidebarTriggerComponent className="bg-transparent" />
         {children}

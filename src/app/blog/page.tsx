@@ -1,6 +1,6 @@
 import { getArticlesHttp, getCategoriesHttp } from '@/http';
 
-import { ArticleProvider, CategoryProvider } from '@/contexts/';
+import { ArticleProvider, CategoryProvider } from '@/data/contexts';
 
 import {
   ArticlesSectionComponent,

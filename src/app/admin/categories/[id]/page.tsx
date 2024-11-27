@@ -1,8 +1,8 @@
 import { getCategoryByIdHttp } from '@/http';
 
 import {
-  AdminContentWrapperHeaderComponent,
-  AdminContentWrapperSectionComponent,
+  ContentWrapperHeaderComponent,
+  ContentWrapperSectionComponent,
   CategoryFormComponent,
   NavigationBreadcrumbComponent,
 } from '@/components';
@@ -29,15 +29,15 @@ export default async function CategoryEditAdminPage({
 
   return (
     <>
-      <AdminContentWrapperHeaderComponent title="categorias">
+      <ContentWrapperHeaderComponent title="categorias">
         <NavigationBreadcrumbComponent
           className="m-0 md:m-0 lg:m-0"
           breadcrumbItems={breadcrumbItems}
         />
-      </AdminContentWrapperHeaderComponent>
-      <AdminContentWrapperSectionComponent>
+      </ContentWrapperHeaderComponent>
+      <ContentWrapperSectionComponent>
         <CategoryFormComponent category={category} />
-      </AdminContentWrapperSectionComponent>
+      </ContentWrapperSectionComponent>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 
-import { AuthProvider, ReactQueryProvider } from '@/contexts';
+import { AuthProvider, ReactQueryProvider } from '@/data/contexts';
 
 import { ToasterComponent, ToastProvider } from '@/components';
 

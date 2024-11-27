@@ -1,4 +1,4 @@
-import { ArticleModel } from '@/models';
+import { ArticleModel } from '@/shared/models';
 
 import { getArticlesHttp } from '../get-articles/get-articles.http';
 

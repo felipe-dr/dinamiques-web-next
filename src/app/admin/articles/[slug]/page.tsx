@@ -1,8 +1,8 @@
 import { getArticleBySlugHttp, getCategoriesHttp } from '@/http';
 
 import {
-  AdminContentWrapperHeaderComponent,
-  AdminContentWrapperSectionComponent,
+  ContentWrapperHeaderComponent,
+  ContentWrapperSectionComponent,
   ArticleFormComponent,
   NavigationBreadcrumbComponent,
 } from '@/components';
@@ -30,15 +30,15 @@ export default async function ArticleEditAdminPage({
 
   return (
     <>
-      <AdminContentWrapperHeaderComponent title="artigos">
+      <ContentWrapperHeaderComponent title="artigos">
         <NavigationBreadcrumbComponent
           className="m-0 md:m-0 lg:m-0"
           breadcrumbItems={breadcrumbItems}
         />
-      </AdminContentWrapperHeaderComponent>
-      <AdminContentWrapperSectionComponent>
+      </ContentWrapperHeaderComponent>
+      <ContentWrapperSectionComponent>
         <ArticleFormComponent categories={categories} articleModel={article} />
-      </AdminContentWrapperSectionComponent>
+      </ContentWrapperSectionComponent>
     </>
   );
 }

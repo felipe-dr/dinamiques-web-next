@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 'use client';
 
 import * as LabelPrimitive from '@radix-ui/react-label';
@@ -12,7 +13,7 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
-import { cn } from '@/libs';
+import { cn } from '@/shared/libs';
 
 import { LabelComponent } from '@/components';
 
