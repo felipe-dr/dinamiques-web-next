@@ -45,11 +45,11 @@ export function CategoryFormComponent({
   });
 
   const handleSubmit = async (
-    values: z.infer<typeof categorySchema>,
+    categorySchemaData: z.infer<typeof categorySchema>,
   ): Promise<void> => {
     const formData = new FormData();
 
-    Object.entries(values).forEach(([key, value]) => {
+    Object.entries(categorySchemaData).forEach(([key, value]) => {
       formData.append(key, String(value));
     });
 
@@ -83,7 +83,6 @@ export function CategoryFormComponent({
       <form
         className="grid space-y-8"
         onSubmit={categoriesForm.handleSubmit(handleSubmit)}
-        action={handleSubmit}
       >
         {categoriesForm.getValues('id') && (
           <FormFieldComponent

@@ -71,11 +71,11 @@ export function ArticleFormComponent({
   });
 
   const handleSubmit = async (
-    values: z.infer<typeof articleSchema>,
+    articleSchemaData: z.infer<typeof articleSchema>,
   ): Promise<void> => {
     const formData = new FormData();
 
-    Object.entries(values).forEach(([key, value]) => {
+    Object.entries(articleSchemaData).forEach(([key, value]) => {
       formData.append(key, String(value));
     });
 
@@ -124,7 +124,6 @@ export function ArticleFormComponent({
       <form
         className="grid space-y-8"
         onSubmit={articlesForm.handleSubmit(handleSubmit)}
-        action={handleSubmit}
       >
         {articlesForm.getValues('id') && (
           <FormFieldComponent
