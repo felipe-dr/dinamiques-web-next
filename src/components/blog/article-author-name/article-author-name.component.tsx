@@ -19,7 +19,7 @@ export function ArticleAuthorNameComponent({
       {...props}
       className={cn('text-sm font-semibold text-base-4', props.className)}
     >
-      {authorName}
+      <span itemProp="name">{authorName}</span>
     </Element>
   );
 }

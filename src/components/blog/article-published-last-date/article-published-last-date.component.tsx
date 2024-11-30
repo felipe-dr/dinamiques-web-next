@@ -15,6 +15,7 @@ export function ArticlePublishedLastDateComponent({
     <time
       className={cn('text-xs text-base-6', props.className)}
       dateTime={new Date(publishedLastDate).toISOString()}
+      itemProp="datePublished"
     >
       {formattedPublishedLastDate(publishedLastDate)}
     </time>

@@ -29,8 +29,9 @@ import {
 // TODO: add filter by terms
 export async function ArticlesTableComponent(): Promise<JSX.Element> {
   const articles = await getArticlesHttp();
+  const articlesData = articles?.data;
 
-  return (
+  return articlesData?.length ? (
     <TableComponent className="capitalize">
       <TableHeaderComponent>
         <TableRowComponent className="border-primary-4 hover:bg-transparent">
@@ -47,7 +48,7 @@ export async function ArticlesTableComponent(): Promise<JSX.Element> {
         </TableRowComponent>
       </TableHeaderComponent>
       <TableBodyComponent>
-        {articles?.map(({ id, category, teacher, article }) => (
+        {articlesData?.map(({ id, category, teacher, article }) => (
           <TableRowComponent key={id}>
             <TableCellComponent className="font-semibold">
               {id}
@@ -126,5 +127,7 @@ export async function ArticlesTableComponent(): Promise<JSX.Element> {
         </TableRowComponent>
       </TableFooterComponent>
     </TableComponent>
+  ) : (
+    <p>Não há artigos disponíveis no momento.</p>
   );
 }

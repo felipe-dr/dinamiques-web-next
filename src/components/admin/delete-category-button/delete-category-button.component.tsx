@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { deleteCategoryAction } from '@/actions';
@@ -23,13 +24,13 @@ export function DeleteCategoryButtonComponent({
 
       if (response.success) {
         toast({
-          title: 'Categorias',
-          description: response.message || 'Categoria removida com sucesso.',
+          title: 'Sucesso!',
+          description: response.message ?? 'Categoria removida com sucesso.',
           variant: 'success',
         });
       } else {
         toast({
-          title: 'Categorias',
+          title: 'Erro!',
           description:
             response.message ?? 'Não foi possível remover a categoria.',
           variant: 'destructive',
@@ -37,8 +38,9 @@ export function DeleteCategoryButtonComponent({
       }
     } catch (error: unknown) {
       toast({
-        title: 'Categorias',
-        description: String(error) ?? 'Um erro inesperado ocorreu!',
+        title: 'Erro!',
+        description:
+          'Um erro inesperado ocorreu ao tentar remover a categoria. Tente novamente mais tarde.',
         variant: 'destructive',
       });
     }

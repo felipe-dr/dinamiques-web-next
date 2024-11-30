@@ -31,13 +31,17 @@ import {
 // TODO: add filter by terms
 export async function CategoriesTableComponent(): Promise<JSX.Element> {
   const categories = await getCategoriesHttp();
-  const categoriesSortingDescendingByCreatedDate =
-    handleSortingDescendingByDate(
-      categories!,
+  const categoriesData = categories?.data;
+  let categoriesSortingDescendingByCreatedDate: CategoryModel[] = [];
+
+  if (categoriesData?.length) {
+    categoriesSortingDescendingByCreatedDate = handleSortingDescendingByDate(
+      categoriesData,
       (category: CategoryModel) => category.createdAt,
     );
+  }
 
-  return (
+  return categoriesData?.length ? (
     <TableComponent className="capitalize">
       <TableHeaderComponent>
         <TableRowComponent className="border-primary-4 hover:bg-transparent">
@@ -125,5 +129,7 @@ export async function CategoriesTableComponent(): Promise<JSX.Element> {
         </TableRowComponent>
       </TableFooterComponent>
     </TableComponent>
+  ) : (
+    <p>Não há categorias disponíveis no momento.</p>
   );
 }

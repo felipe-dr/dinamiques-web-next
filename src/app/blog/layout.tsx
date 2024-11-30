@@ -5,7 +5,7 @@ import { FooterComponent, HeaderComponent } from '@/components';
 export const metadata: Metadata = {
   title: 'Dinamiques - Conhecimento ao Alcance de Todos',
   description:
-    'Dinamiques é um blog acâdemico que reúne os mais diversos assuntos em um único local de forma acessível e eficiente para que qualquer um com vontade de aprender possa se integrar.',
+    'Dinamiques é um blog acadêmico que aborda diversos temas educacionais, proporcionando conteúdo acessível e eficiente para quem busca aprender e se atualizar.',
 };
 
 export default function BlogLayout({

@@ -9,6 +9,7 @@ import {
 
 export default async function ArticleAddAdminPage(): Promise<JSX.Element> {
   const categories = await getCategoriesHttp();
+  const categoriesData = categories?.data;
 
   const breadcrumbItems = [
     {
@@ -30,7 +31,7 @@ export default async function ArticleAddAdminPage(): Promise<JSX.Element> {
         />
       </ContentWrapperHeaderComponent>
       <ContentWrapperSectionComponent>
-        <ArticleFormComponent categories={categories} />
+        <ArticleFormComponent categories={categoriesData} />
       </ContentWrapperSectionComponent>
     </>
   );

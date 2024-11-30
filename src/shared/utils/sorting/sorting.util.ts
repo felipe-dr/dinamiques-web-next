@@ -36,8 +36,6 @@ export function handleSortingDescendingByDate<T>(
     const timeB = dateB instanceof Date ? dateB.getTime() : Date.parse(dateB);
 
     if (isNaN(timeA) || isNaN(timeB)) {
-      console.warn('Invalid data.');
-
       return 0;
     }
 

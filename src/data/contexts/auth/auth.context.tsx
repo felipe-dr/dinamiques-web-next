@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
       setIsAuthenticated(data.isAuthenticated);
       setUserData(data.userData);
     } catch (error) {
-      console.error('Erro ao verificar autenticação', error);
+      console.error('Erro ao verificar autenticação');
     }
   };
 

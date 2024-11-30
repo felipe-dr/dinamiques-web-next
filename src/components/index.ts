@@ -29,6 +29,7 @@ export * from './shared/search-input/search-input.component';
 export * from './shared/section-box/section-box.component';
 export * from './shared/section-decorator/section-decorator.component';
 export * from './shared/signin-dialog/signin-dialog.component';
+export * from './shared/spinner/spinner.component';
 export * from './shared/title/title.component';
 export * from './ui/alert-dialog';
 export * from './ui/avatar';

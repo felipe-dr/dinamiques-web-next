@@ -1,22 +1,40 @@
-import { ArticleModel } from '@/shared/models';
+import { ApiResponseWithDataModel, ArticleModel } from '@/shared/models';
 
-import { getArticlesHttp } from '../get-articles/get-articles.http';
+import { API_URL } from '../api-client/api-client.http';
 
 interface GetRecommendedArticlesByCategoryHttpRequest {
   categoryName: string;
   excludeId: string;
 }
 
-type GetRecommendedArticlesByCategoryHttpResponse = ArticleModel[] | undefined;
+type GetRecommendedArticlesByCategoryHttpResponse =
+  | Partial<ApiResponseWithDataModel<ArticleModel[]>>
+  | undefined;
 
 export async function getRecommendedArticlesByCategoryHttp({
   categoryName,
   excludeId,
 }: GetRecommendedArticlesByCategoryHttpRequest): Promise<GetRecommendedArticlesByCategoryHttpResponse> {
-  const articles = await getArticlesHttp();
+  const response = await fetch(`${API_URL}/articles`);
+  const {
+    statusCode,
+    error,
+    message,
+    data,
+  }: ApiResponseWithDataModel<ArticleModel[]> = await response.json();
 
-  return articles?.filter(
+  if (!response.ok) {
+    return {
+      statusCode,
+      error,
+      message,
+    };
+  }
+
+  const recommendedArticles = data?.filter(
     (article) =>
       article.category.name === categoryName && article.id !== excludeId,
   );
+
+  return { statusCode, error, message, data: recommendedArticles };
 }

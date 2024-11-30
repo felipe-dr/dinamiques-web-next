@@ -10,7 +10,6 @@ export async function UsernameComponent(): Promise<JSX.Element> {
 
   const response = await fetch(`${currentUrl}/api/auth/check`);
   const data = await response.json();
-  console.log(data);
 
   return <span>{data.userData}</span>;
 }

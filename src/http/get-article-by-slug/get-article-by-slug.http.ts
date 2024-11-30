@@ -1,17 +1,35 @@
-import { ArticleModel } from '@/shared/models';
+import { ApiResponseWithDataModel, ArticleModel } from '@/shared/models';
 
-import { getArticlesHttp } from '../get-articles/get-articles.http';
+import { API_URL } from '../api-client/api-client.http';
 
 interface GetArticleBySlugHttpRequest {
   slug: string;
 }
 
-type GetArticleBySlugHttpResponse = ArticleModel | undefined;
+type GetArticleBySlugHttpResponse =
+  | Partial<ApiResponseWithDataModel<ArticleModel>>
+  | undefined;
 
 export async function getArticleBySlugHttp({
   slug,
 }: GetArticleBySlugHttpRequest): Promise<GetArticleBySlugHttpResponse> {
-  const articles = await getArticlesHttp();
+  const response = await fetch(`${API_URL}/articles`);
+  const {
+    statusCode,
+    error,
+    message,
+    data,
+  }: ApiResponseWithDataModel<ArticleModel[]> = await response.json();
 
-  return articles?.find(({ article }) => article.slug === slug);
+  if (!response.ok) {
+    return {
+      statusCode,
+      error,
+      message,
+    };
+  }
+
+  const article = data.find(({ article: resource }) => resource.slug === slug);
+
+  return { statusCode, error, message, data: article };
 }

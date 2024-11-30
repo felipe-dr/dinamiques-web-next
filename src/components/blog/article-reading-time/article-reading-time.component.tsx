@@ -14,6 +14,7 @@ export function ArticleReadingTimeComponent({
     <time
       className="flex items-center gap-2 text-sm font-semibold text-base-4"
       dateTime={`${readingTime}`}
+      itemProp="timeRequired"
     >
       <ClockIcon className="size-[1.042rem] text-primary-3" />
       {formatToHoursAndMinutes(readingTime)}
