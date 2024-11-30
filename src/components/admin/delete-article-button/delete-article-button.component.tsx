@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { deleteArticleAction } from '@/actions';
@@ -23,17 +24,22 @@ export function DeleteArticleButtonComponent({
 
       if (response.success) {
         toast({
-          title: 'Artigos',
-          description: response.message,
+          title: 'Sucesso!',
+          description: response.message ?? 'Artigo removido com sucesso.',
           variant: 'success',
         });
       } else {
-        throw new Error(response.message || 'Erro inesperado.');
+        toast({
+          title: 'Erro!',
+          description: response.message ?? 'Não foi possível remover o artigo.',
+          variant: 'destructive',
+        });
       }
-    } catch (error) {
+    } catch (error: unknown) {
       toast({
-        title: 'Artigos',
-        description: String(error) ?? 'Não foi possível remover o artigo.',
+        title: 'Erro!',
+        description:
+          'Um erro inesperado ocorreu ao tentar remover o artigo. Tente novamente mais tarde.',
         variant: 'destructive',
       });
     }

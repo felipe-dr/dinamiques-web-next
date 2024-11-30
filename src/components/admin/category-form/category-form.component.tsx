@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -60,19 +61,27 @@ export function CategoryFormComponent({
 
       if (response.success) {
         toast({
-          title: 'Categorias',
-          description: response.message,
+          title: 'Sucesso!',
+          description:
+            response.message ??
+            `Categoria ${category ? 'editada' : 'criada'} com sucesso.`,
           variant: 'success',
         });
 
         router.push('/admin/categories');
       } else {
-        throw new Error(response.message || 'Erro inesperado.');
+        toast({
+          title: 'Erro!',
+          description:
+            response.message ??
+            `Não foi possível ${category ? 'editar' : 'criar'} a categoria.`,
+          variant: 'destructive',
+        });
       }
     } catch (error: unknown) {
       toast({
-        title: 'Categorias',
-        description: String(error) ?? 'Não foi possível criar a categoria.',
+        title: 'Erro!',
+        description: `Um erro inesperado ocorreu ao tentar ${category ? 'editar' : 'criar'} a categoria. Tente novamente mais tarde.`,
         variant: 'destructive',
       });
     }

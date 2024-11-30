@@ -50,14 +50,12 @@ export function SidebarRootComponent(): JSX.Element {
 
     if (response.ok) {
       toast({
-        title: 'Autenticação',
-        description: 'Logout efetuado com sucesso.',
+        title: 'Sucesso!',
+        description: 'Sessão encerrada com sucesso.',
         variant: 'success',
       });
 
       router.push('/blog');
-    } else {
-      console.error('Erro ao realizar o logout');
     }
   };
 

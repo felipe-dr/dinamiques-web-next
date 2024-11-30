@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -86,19 +87,27 @@ export function ArticleFormComponent({
 
       if (response.success) {
         toast({
-          title: 'Artigos',
-          description: response.message,
+          title: 'Sucesso!',
+          description:
+            response.message ??
+            `Artigo ${articleModel ? 'editado' : 'criado'} com sucesso.`,
           variant: 'success',
         });
 
         router.push('/admin/articles');
       } else {
-        throw new Error(response.message || 'Erro inesperado.');
+        toast({
+          title: 'Erro!',
+          description:
+            response.message ??
+            `Não foi possível ${articleModel ? 'editar' : 'criar'} o artigo.`,
+          variant: 'destructive',
+        });
       }
     } catch (error: unknown) {
       toast({
-        title: 'Artigos',
-        description: String(error) ?? 'Não foi possível criar o artigo.',
+        title: 'Erro!',
+        description: `Um erro inesperado ocorreu ao tentar ${articleModel ? 'editar' : 'criar'} o artigo. Tente novamente mais tarde.`,
         variant: 'destructive',
       });
     }
