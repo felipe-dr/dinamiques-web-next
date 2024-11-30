@@ -208,6 +208,19 @@ const config: Config = {
       gridTemplateColumns: {
         'articles-section': 'repeat(auto-fit, minmax(23.75rem, 1fr))',
       },
+      keyframes: {
+        'fade-in': {
+          from: {
+            opacity: '0',
+          },
+          to: {
+            opacity: '1',
+          },
+        },
+      },
+      animation: {
+        fadein: 'fade-in 1.5s ease-in-out 0.25s forwards',
+      },
     },
   },
   plugins: [tailwindcssAnimate],
