@@ -6,20 +6,28 @@ interface GetCategoryByIdHttpRequest {
   id: string;
 }
 
-type GetCategoryByIdHttpResponse = CategoryModel | undefined;
+type GetCategoryByIdHttpResponse =
+  | Partial<ApiResponseWithDataModel<CategoryModel>>
+  | undefined;
 
 export async function getCategoryByIdHttp({
   id,
 }: GetCategoryByIdHttpRequest): Promise<GetCategoryByIdHttpResponse> {
   const response = await fetch(`${API_URL}/categories/${id}`);
+  const {
+    statusCode,
+    error,
+    message,
+    data,
+  }: ApiResponseWithDataModel<CategoryModel> = await response.json();
 
-  // TODO: change to friendly error
   if (!response.ok) {
-    throw new Error('Failed to fetch category');
+    return {
+      statusCode,
+      error,
+      message,
+    };
   }
 
-  const { data }: ApiResponseWithDataModel<CategoryModel> =
-    await response.json();
-
-  return data;
+  return { statusCode, error, message, data };
 }

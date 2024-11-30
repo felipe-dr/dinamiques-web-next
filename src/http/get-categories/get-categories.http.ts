@@ -2,18 +2,26 @@ import { ApiResponseWithDataModel, CategoryModel } from '@/shared/models';
 
 import { API_URL } from '../api-client/api-client.http';
 
-type GetCategoriesHttpResponse = CategoryModel[] | undefined;
+type GetCategoriesHttpResponse =
+  | Partial<ApiResponseWithDataModel<CategoryModel[]>>
+  | undefined;
 
 export async function getCategoriesHttp(): Promise<GetCategoriesHttpResponse> {
   const response = await fetch(`${API_URL}/categories`);
+  const {
+    statusCode,
+    error,
+    message,
+    data,
+  }: ApiResponseWithDataModel<CategoryModel[]> = await response.json();
 
-  // TODO: change to friendly error
   if (!response.ok) {
-    throw new Error('Failed to fetch categories');
+    return {
+      statusCode,
+      error,
+      message,
+    };
   }
 
-  const { data }: ApiResponseWithDataModel<CategoryModel[]> =
-    await response.json();
-
-  return data;
+  return { statusCode, error, message, data };
 }
