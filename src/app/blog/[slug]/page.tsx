@@ -1,5 +1,6 @@
 import { UserIcon } from '@heroicons/react/24/outline';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import {
   getArticleBySlugHttp,
@@ -27,13 +28,15 @@ import {
 } from '@/components';
 
 export async function generateStaticParams() {
-  const articles = await getArticlesHttp();
+  const response = await getArticlesHttp();
 
-  return (
-    articles?.map(({ article }) => ({
-      slug: article.slug,
-    })) ?? []
-  );
+  if (response) {
+    return (
+      response?.data?.map(({ article }) => ({
+        slug: article.slug,
+      })) ?? []
+    );
+  }
 }
 
 export async function generateMetadata({
@@ -61,11 +64,11 @@ export default async function ArticlePage({
 }: ArticlePageProps): Promise<JSX.Element> {
   const response = await getArticleBySlugHttp({ slug });
 
-  if (!response) {
-    return <p>Artigo não encontrado.</p>;
+  if (!response!.data) {
+    return notFound();
   }
 
-  const { id, teacher, category, article } = response;
+  const { id, teacher, category, article } = response!.data;
   const recommendedArticles = await getRecommendedArticlesByCategoryHttp({
     categoryName: category.name,
     excludeId: id,
@@ -93,6 +96,7 @@ export default async function ArticlePage({
   return (
     <>
       <HeroComponent
+        className="animate-fadein opacity-0"
         backgroundImage={backgroundImage}
         itemScope
         itemType="https://schema.org/Article"
@@ -156,9 +160,9 @@ export default async function ArticlePage({
         >
           <ContentRendererComponent content={article.content} />
         </SectionBoxComponent>
-        {recommendedArticles && recommendedArticles.length > 0 && (
+        {recommendedArticles?.data && recommendedArticles.data.length > 0 && (
           <ArticlesRecommendationSectionComponent
-            articles={recommendedArticles}
+            articles={recommendedArticles.data}
           />
         )}
       </main>
