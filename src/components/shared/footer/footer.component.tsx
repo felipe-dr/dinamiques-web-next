@@ -15,7 +15,7 @@ const FOOTER_LINKS = [
   },
 ];
 
-const FOOTER_RIGHTS = `© ${new Date().getFullYear()} Dinamiques. Alguns direitos reservados.`;
+export const FOOTER_RIGHTS = `© ${new Date().getFullYear()} Dinamiques. Alguns direitos reservados.`;
 
 export function FooterComponent(): JSX.Element {
   return (

@@ -7,7 +7,7 @@ import {
   NavigationMenuLinkComponent,
 } from '@/components';
 
-const NAVIGATION_MENU_ITEMS = [
+export const NAVIGATION_MENU_ITEMS = [
   {
     label: 'blog',
     path: '/blog',
