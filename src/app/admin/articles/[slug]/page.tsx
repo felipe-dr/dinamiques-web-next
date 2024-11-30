@@ -15,7 +15,9 @@ export default async function ArticleEditAdminPage({
   params: { slug },
 }: ArticleEditAdminPageProps): Promise<JSX.Element> {
   const categories = await getCategoriesHttp();
+  const categoriesData = categories?.data;
   const article = await getArticleBySlugHttp({ slug });
+  const articleData = article?.data;
 
   const breadcrumbItems = [
     {
@@ -37,7 +39,10 @@ export default async function ArticleEditAdminPage({
         />
       </ContentWrapperHeaderComponent>
       <ContentWrapperSectionComponent>
-        <ArticleFormComponent categories={categories} articleModel={article} />
+        <ArticleFormComponent
+          categories={categoriesData}
+          articleModel={articleData}
+        />
       </ContentWrapperSectionComponent>
     </>
   );

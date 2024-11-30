@@ -15,6 +15,7 @@ export default async function CategoryEditAdminPage({
   params: { id },
 }: CategoryEditAdminPageProps): Promise<JSX.Element> {
   const category = await getCategoryByIdHttp({ id });
+  const categoryData = category?.data;
 
   const breadcrumbItems = [
     {
@@ -36,7 +37,7 @@ export default async function CategoryEditAdminPage({
         />
       </ContentWrapperHeaderComponent>
       <ContentWrapperSectionComponent>
-        <CategoryFormComponent category={category} />
+        <CategoryFormComponent category={categoryData} />
       </ContentWrapperSectionComponent>
     </>
   );
