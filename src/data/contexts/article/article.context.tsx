@@ -51,6 +51,10 @@ export function ArticleProvider({
       category: CategoryModel,
       query: string,
     ): ArticleModel[] => {
+      if (!inputArticles) {
+        return [];
+      }
+
       let filteredArticles = inputArticles;
       const isSpecificCategory = category.id !== allActiveCategories.id;
 
