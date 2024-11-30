@@ -42,7 +42,9 @@ export function TitleComponent({
   return (
     <Element {...props} className={cn(title, props.className)}>
       {children}
-      {hasDotDecorator && <span className="text-primary-7">.</span>}
+      {hasDotDecorator && (
+        <span className="animate-pulse text-primary-7">.</span>
+      )}
     </Element>
   );
 }
