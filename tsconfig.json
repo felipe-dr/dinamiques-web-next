@@ -20,6 +20,7 @@
     "jsx": "preserve",
     "incremental": true,
     "sourceMap": true,
+    "types": ["vitest/globals"],
     "plugins": [
       {
         "name": "next"
