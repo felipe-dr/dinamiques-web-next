@@ -30,13 +30,13 @@ import {
 export async function generateStaticParams() {
   const response = await getArticlesHttp();
 
-  if (response) {
-    return (
-      response?.data?.map(({ article }) => ({
-        slug: article.slug,
-      })) ?? []
-    );
+  if (response?.data) {
+    return response?.data?.map(({ article }) => ({
+      slug: article.slug,
+    }));
   }
+
+  return [];
 }
 
 export async function generateMetadata({
