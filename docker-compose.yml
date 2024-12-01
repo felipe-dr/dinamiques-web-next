@@ -1,0 +1,21 @@
+services:
+  web:
+    container_name: dinamiques-web-next
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '4000:4000'
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - dinamiques-network
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+networks:
+  dinamiques-network:
+    external: true
