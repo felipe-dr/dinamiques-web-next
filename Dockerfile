@@ -2,28 +2,25 @@ FROM node:18-alpine AS builder
 
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache libc6-compat
+RUN npm i -g pnpm
 
 COPY package*.json ./
 
-RUN npm install --legacy-peer-deps
+RUN pnpm install
 
 COPY . .
 
-RUN npm run build
+RUN pnpm build
 
 FROM node:18-alpine AS runner
 
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/src/app/package.json /usr/src/app/
-COPY --from=builder /usr/src/app/package-lock.json /usr/src/app/
-COPY --from=builder /usr/src/app/next.config.mjs /usr/src/app/
-COPY --from=builder /usr/src/app/.next /usr/src/app/
-COPY --from=builder /usr/src/app/node_modules /usr/src/app/
+RUN npm i -g pnpm
 
-EXPOSE 4000
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/package.json ./package.json
+COPY --from=builder /usr/src/app/next.config.mjs ./next.config.mjs
+COPY --from=builder /usr/src/app/.next ./.next
 
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
