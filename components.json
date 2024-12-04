@@ -6,7 +6,7 @@
   "tailwind": {
     "config": "tailwind.config.ts",
     "css": "src/app/styles/global.css",
-    "baseColor": "base-15",
+    "baseColor": "neutral",
     "cssVariables": false,
     "prefix": ""
   },
