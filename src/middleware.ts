@@ -1,14 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { isTokenExpired } from './shared/utils';
+
 export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
   const pathname = request.nextUrl.pathname;
+  let isJwtExpired = false;
 
-  if (!accessToken && pathname.startsWith('/admin')) {
+  if (accessToken) {
+    isJwtExpired = isTokenExpired(accessToken);
+  }
+
+  if (isJwtExpired) {
+    const response = NextResponse.json({
+      isAuthenticated: false,
+    });
+
+    response.cookies.delete('accessToken');
+
+    return response;
+  }
+
+  if (
+    (!accessToken && pathname.startsWith('/admin')) ||
+    (isJwtExpired && pathname.startsWith('/admin'))
+  ) {
     return NextResponse.redirect(new URL('/blog', request.url));
   }
 
-  if (accessToken && pathname === '/admin') {
+  if (accessToken && !isJwtExpired && pathname === '/admin') {
     return NextResponse.next();
   }
 
