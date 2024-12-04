@@ -9,13 +9,7 @@ services:
     env_file:
       - .env
     restart: unless-stopped
-    volumes:
-      - .:/usr/src/app
-    networks:
-      - dinamiques-network
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
+    network_mode: bridge
 
-networks:
-  dinamiques-network:
-    external: true
+volumes:
+  node_modules:
