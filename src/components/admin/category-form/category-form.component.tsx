@@ -3,6 +3,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { HexColorPicker } from 'react-colorful';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -16,7 +18,6 @@ import {
   ButtonComponent,
   FormComponent,
   FormControlComponent,
-  FormDescriptionComponent,
   FormFieldComponent,
   FormItemComponent,
   FormLabelComponent,
@@ -40,10 +41,14 @@ export function CategoryFormComponent({
     defaultValues: {
       id: category?.id || '',
       name: category?.name || '',
-      color: category?.color || '',
+      color: category?.color || '#000',
       isActive: category?.isActive ?? true,
     },
   });
+  const { setValue, getValues } = categoriesForm;
+  const [categoryColor, setCategoryColor] = useState<string>(
+    getValues('color'),
+  );
 
   const handleSubmit = async (
     categorySchemaData: z.infer<typeof categorySchema>,
@@ -87,6 +92,10 @@ export function CategoryFormComponent({
     }
   };
 
+  useEffect(() => {
+    setValue('color', categoryColor);
+  }, [categoryColor, setValue]);
+
   return (
     <FormComponent {...categoriesForm}>
       <form
@@ -128,19 +137,15 @@ export function CategoryFormComponent({
         <FormFieldComponent
           control={categoriesForm.control}
           name="color"
-          render={({ field }) => (
+          render={() => (
             <FormItemComponent>
               <FormLabelComponent>Cor</FormLabelComponent>
               <FormControlComponent>
-                <InputComponent
-                  placeholder="Digite a cor"
-                  maxLength={7}
-                  {...field}
+                <HexColorPicker
+                  color={categoryColor}
+                  onChange={(newColor) => setCategoryColor(newColor)}
                 />
               </FormControlComponent>
-              <FormDescriptionComponent>
-                Obrigatório a ser um hexadecimal #123456.
-              </FormDescriptionComponent>
               <FormMessageComponent />
             </FormItemComponent>
           )}
