@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { getCategoriesHttp } from '@/http';
+
 import { cn } from '@/shared/libs';
 
 import {
@@ -10,7 +12,10 @@ import {
   NavigationBreadcrumbComponent,
 } from '@/components';
 
-export default function CategoriesAdminPage(): JSX.Element {
+export default async function CategoriesAdminPage(): Promise<JSX.Element> {
+  const categories = await getCategoriesHttp();
+  const categoriesData = categories?.data;
+
   const breadcrumbItems = [
     {
       label: 'categorias',
@@ -36,7 +41,11 @@ export default function CategoriesAdminPage(): JSX.Element {
         </Link>
       </ContentWrapperHeaderComponent>
       <ContentWrapperSectionComponent>
-        <CategoriesTableComponent />
+        {categoriesData?.length ? (
+          <CategoriesTableComponent categories={categoriesData} />
+        ) : (
+          <p>Não há categorias disponíveis no momento.</p>
+        )}
       </ContentWrapperSectionComponent>
     </>
   );

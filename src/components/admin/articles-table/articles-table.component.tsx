@@ -1,4 +1,4 @@
-import { getArticlesHttp } from '@/http';
+import { ArticleModel } from '@/shared/models';
 
 import { DataTableComponent } from '@/components';
 
@@ -7,12 +7,16 @@ import {
   ArticlesTableColumns,
 } from './articles-table-columns.component';
 
-export async function ArticlesTableComponent(): Promise<JSX.Element> {
-  const articles = await getArticlesHttp();
-  const articlesData = articles?.data;
+interface ArticlesTableComponentProps {
+  articles: ArticleModel[];
+}
+
+export function ArticlesTableComponent({
+  articles,
+}: ArticlesTableComponentProps): JSX.Element {
   const articlesTableData: ArticlesTableColumns[] = [];
 
-  articlesData?.map(({ id, teacher, category, article }) => {
+  articles?.map(({ id, teacher, category, article }) => {
     return articlesTableData.push({
       id,
       category: category.name,
@@ -28,13 +32,11 @@ export async function ArticlesTableComponent(): Promise<JSX.Element> {
     });
   });
 
-  return articlesData?.length ? (
+  return (
     <DataTableComponent
       columns={articlesTableColumns}
       data={articlesTableData}
       filter={{ placeholdder: 'título', term: 'title' }}
     />
-  ) : (
-    <p>Não há artigos disponíveis no momento.</p>
   );
 }

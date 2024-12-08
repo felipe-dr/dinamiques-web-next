@@ -1,16 +1,21 @@
 import Link from 'next/link';
 
+import { getArticlesHttp } from '@/http';
+
 import { cn } from '@/shared/libs';
 
 import {
-  ContentWrapperHeaderComponent,
-  ContentWrapperSectionComponent,
   ArticlesTableComponent,
   buttonVariants,
+  ContentWrapperHeaderComponent,
+  ContentWrapperSectionComponent,
   NavigationBreadcrumbComponent,
 } from '@/components';
 
-export default function ArticlesAdminPage(): JSX.Element {
+export default async function ArticlesAdminPage(): Promise<JSX.Element> {
+  const articles = await getArticlesHttp();
+  const articlesData = articles?.data;
+
   const breadcrumbItems = [
     {
       label: 'artigos',
@@ -36,7 +41,11 @@ export default function ArticlesAdminPage(): JSX.Element {
         </Link>
       </ContentWrapperHeaderComponent>
       <ContentWrapperSectionComponent>
-        <ArticlesTableComponent />
+        {articlesData?.length ? (
+          <ArticlesTableComponent articles={articlesData} />
+        ) : (
+          <p>Não há artigos disponíveis no momento.</p>
+        )}
       </ContentWrapperSectionComponent>
     </>
   );

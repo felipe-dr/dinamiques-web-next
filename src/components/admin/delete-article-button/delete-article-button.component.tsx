@@ -14,7 +14,11 @@ interface DeleteArticleButtonComponentProps {
 export function DeleteArticleButtonComponent({
   id,
 }: DeleteArticleButtonComponentProps): JSX.Element {
-  const handleDeleteArticle = async (): Promise<void> => {
+  const handleDeleteArticle = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    event.preventDefault();
+
     const formData = new FormData();
 
     formData.append('id', id);
@@ -46,7 +50,7 @@ export function DeleteArticleButtonComponent({
   };
 
   return (
-    <form action={handleDeleteArticle}>
+    <form onSubmit={handleDeleteArticle}>
       <input type="hidden" name="id" value={id} />
       <AlertDialogActionComponent type="submit">
         Continuar

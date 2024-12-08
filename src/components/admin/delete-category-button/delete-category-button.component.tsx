@@ -14,7 +14,11 @@ interface DeleteCategoryButtonComponentProps {
 export function DeleteCategoryButtonComponent({
   id,
 }: DeleteCategoryButtonComponentProps): JSX.Element {
-  const handleDeleteCategory = async (): Promise<void> => {
+  const handleDeleteCategory = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    event.preventDefault();
+
     const formData = new FormData();
 
     formData.append('id', id);
@@ -47,7 +51,7 @@ export function DeleteCategoryButtonComponent({
   };
 
   return (
-    <form action={handleDeleteCategory}>
+    <form onSubmit={handleDeleteCategory}>
       <input type="hidden" name="id" value={id} />
       <AlertDialogActionComponent type="submit">
         Continuar
