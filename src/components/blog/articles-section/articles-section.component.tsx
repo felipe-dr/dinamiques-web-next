@@ -2,16 +2,7 @@
 
 import { useArticleContext } from '@/data/contexts';
 
-import {
-  ArticleCardComponent,
-  PaginationComponent,
-  PaginationContentComponent,
-  PaginationItemComponent,
-  PaginationLinkComponent,
-  PaginationNextComponent,
-  PaginationPreviousComponent,
-  SectionBoxComponent,
-} from '@/components';
+import { ArticleCardComponent, SectionBoxComponent } from '@/components';
 
 // TODO: Add dinamic pagination
 export function ArticlesSectionComponent(): JSX.Element {
@@ -34,7 +25,7 @@ export function ArticlesSectionComponent(): JSX.Element {
           <p>Não há artigos disponíveis no momento.</p>
         )}
       </div>
-      <footer>
+      {/* <footer>
         <PaginationComponent>
           <PaginationContentComponent>
             <PaginationItemComponent>
@@ -48,7 +39,7 @@ export function ArticlesSectionComponent(): JSX.Element {
             </PaginationItemComponent>
           </PaginationContentComponent>
         </PaginationComponent>
-      </footer>
+      </footer> */}
     </SectionBoxComponent>
   );
 }
