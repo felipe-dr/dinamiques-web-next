@@ -12,6 +12,8 @@ COPY . .
 
 FROM node:18-alpine AS runner
 
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 WORKDIR /usr/src/app
 
 RUN npm i -g pnpm
@@ -23,5 +25,7 @@ COPY --from=builder /usr/src/app/src ./src
 COPY --from=builder /usr/src/app .
 
 EXPOSE 4000
+
+USER appuser
 
 CMD ["pnpm", "dev"]
