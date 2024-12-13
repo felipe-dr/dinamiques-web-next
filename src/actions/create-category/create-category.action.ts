@@ -40,6 +40,7 @@ export async function createCategoryAction(formData: FormData) {
     }
 
     revalidatePath('/admin/categories');
+    revalidatePath('/admin/articles/add');
 
     return { success: true, message: response?.message };
   } catch (error) {

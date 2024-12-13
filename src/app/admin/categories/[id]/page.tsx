@@ -1,3 +1,5 @@
+import { revalidatePath } from 'next/cache';
+
 import { getCategoryByIdHttp } from '@/http';
 
 import {
@@ -14,6 +16,8 @@ interface CategoryEditAdminPageProps {
 export default async function CategoryEditAdminPage({
   params: { id },
 }: CategoryEditAdminPageProps): Promise<JSX.Element> {
+  revalidatePath(`/admin/categories/${id}`);
+
   const category = await getCategoryByIdHttp({ id });
   const categoryData = category?.data;
 

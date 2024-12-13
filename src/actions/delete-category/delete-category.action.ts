@@ -23,6 +23,7 @@ export async function deleteCategoryAction(formData: FormData) {
     }
 
     revalidatePath('/admin/categories');
+    revalidatePath('/admin/articles/add');
 
     return { success: true, message: response?.message };
   } catch (error) {

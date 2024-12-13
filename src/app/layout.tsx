@@ -2,8 +2,6 @@ import { Inter } from 'next/font/google';
 
 import { AuthProvider, ReactQueryProvider } from '@/data/contexts';
 
-import { BASE_URL } from '@/shared/constants';
-
 import { ToasterComponent, ToastProvider } from '@/components';
 
 import './styles/global.css';
@@ -14,9 +12,6 @@ const inter = Inter({
 });
 
 export const metadata = {
-  alternates: {
-    canonical: BASE_URL,
-  },
   openGraph: {
     images: '/opengraph-image.png',
   },

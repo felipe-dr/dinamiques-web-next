@@ -32,7 +32,7 @@ export function NavigationBreadcrumbComponent({
       const path = `/${currentPathnameParts.slice(0, index + 1).join('/')}`;
 
       return {
-        label: pathnamePart,
+        label: pathnamePart === 'admin' ? 'início' : pathnamePart,
         path,
       };
     },

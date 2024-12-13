@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  AcademicCapIcon,
   ArrowLeftEndOnRectangleIcon,
   DocumentTextIcon,
   HomeIcon,
@@ -68,6 +69,13 @@ export function SidebarRootComponent(): JSX.Element {
             <SidebarMenuButtonComponent asChild>
               <Link href="/admin">
                 <HomeIcon /> Início
+              </Link>
+            </SidebarMenuButtonComponent>
+          </SidebarMenuItemComponent>
+          <SidebarMenuItemComponent className="capitalize">
+            <SidebarMenuButtonComponent asChild>
+              <Link href="/blog">
+                <AcademicCapIcon /> Blog
               </Link>
             </SidebarMenuButtonComponent>
           </SidebarMenuItemComponent>

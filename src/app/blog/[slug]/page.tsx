@@ -8,8 +8,6 @@ import {
   getRecommendedArticlesByCategoryHttp,
 } from '@/http';
 
-import { ArticleModel } from '@/shared/models';
-
 import {
   ArticleAuthorNameComponent,
   ArticlePublishedLastDateComponent,
@@ -43,9 +41,10 @@ export async function generateMetadata({
   params: { slug },
 }: ArticlePageProps): Promise<Metadata | null> {
   const response = await getArticleBySlugHttp({ slug });
-  const { article } = response as ArticleModel;
 
-  if (article) {
+  if (response?.data) {
+    const { article } = response?.data;
+
     return {
       title: article.title,
       description: article.summary,

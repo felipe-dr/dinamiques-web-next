@@ -1,20 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-async function verifyTokenAndGetUserData(token: string) {
-  const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET!;
+import { verifyToken } from '@/shared/utils';
 
-  try {
-    const decodedJWT = jwt.verify(token, JWT_SECRET);
-    return decodedJWT;
-  } catch (error) {
-    throw `Token inválido - ${error}`;
-  }
-}
-
-export async function GET() {
+export function GET() {
   const accessToken = cookies().get('accessToken')?.value;
 
   if (!accessToken) {
@@ -22,10 +12,10 @@ export async function GET() {
   }
 
   try {
-    const userData = await verifyTokenAndGetUserData(accessToken);
+    const userData = verifyToken(accessToken);
 
     return NextResponse.json({ isAuthenticated: true, userData });
-  } catch (error) {
+  } catch (error: unknown) {
     return NextResponse.json({ isAuthenticated: false });
   }
 }

@@ -1,3 +1,5 @@
+import { revalidatePath } from 'next/cache';
+
 import { getArticleBySlugHttp, getCategoriesHttp } from '@/http';
 
 import {
@@ -14,6 +16,8 @@ interface ArticleEditAdminPageProps {
 export default async function ArticleEditAdminPage({
   params: { slug },
 }: ArticleEditAdminPageProps): Promise<JSX.Element> {
+  revalidatePath(`/admin/articles/${slug}`);
+
   const categories = await getCategoriesHttp();
   const categoriesData = categories?.data;
   const article = await getArticleBySlugHttp({ slug });
